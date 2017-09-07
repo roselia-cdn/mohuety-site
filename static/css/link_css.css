@@ -1,0 +1,13 @@
+body{
+    background: #fafafa;
+    color: #444444;
+    font-family: Seravek, 'JAF Bernino Sans', 'Myriad Pro', Myriad, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.link-card {
+    display: none;
+}
+
+#title{
+    display: none;
+}

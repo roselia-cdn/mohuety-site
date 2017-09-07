@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title class="blog-title">About Me</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+    </head>
+    <body>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <nav class="blog-color" id="mobile-nav">
+            <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-list" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
+                <div class="container">
+                    <a href="#" class="brand-logo">Roselia</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="/">Index</a>
+                        </li>
+                        <li>
+                            <a href="/blog">Blog</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-list">
+                        <li>
+                            <a href="/">Index</a>
+                        </li>
+                        <li>
+                            <a href="/blog">Blog</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="parallax-container white-text">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br>
+                    <br>
+                    <h1 class="header center blog-text">Mohuety</h1>
+                    <div class="row center">
+                        <h5>a.k.a. Somainer, Chlorine</h5>
+                        <h5 class="header col s12 light">LLER / BanG-Dreamer</h5>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax" id="main-pic">
+                <img class="parall-pic parall-pic-first" src="static/img/buji.JPG">
+            </div>
+        </div>
+        <div class="parallax-container white-text">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br>
+                    <br>
+                    <h1 class="header center blog-text">Find me</h1>
+                    <div class="row center white-text">
+                        <h5 class="header col s12 light">NO WAY</h5>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax" id="main-pic2">
+                <img class="parall-pic" src="static/img/gingaku.JPG">
+            </div>
+        </div>
+        <div class="parallax-container white-text">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br>
+                    <br>
+                    <h1 class="header center blog-text">Friends</h1>
+                    <div class="row center white-text">
+                        <ul>
+                            <li>
+                                <a href="https://pingch.top" class="header col s12 light deep-purple-text text-darken-4">
+                                    <h5>Pingch</h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascipt:void(0)"><h5 class="header col s12">Mozalic</h5></a>
+                            </li>
+                            <li>
+                                <a href="https://joyneop.xyz"><h5 class="header col s12  amber-text text-darken-4">Joy Neop(Neruthes)</h5></a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax" id="main-pic3">
+                <img class="parall-pic" src="static/img/genji.JPG">
+            </div>
+        </div>
+        <footer class="page-footer blog-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text blog-title">Roselia</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    &copy;<script>
+                        document.write((new Date).getFullYear());
+                    </script>
+                    Designed by Mohuety. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/materialize/0.100.1/css/materialize.min.css">
+        <script defer src="https://cdn.bootcss.com/materialize/0.100.1/js/materialize.min.js"></script>
+        <link href="static/css/material_icons.min.css" type="text/css" rel="stylesheet">
+        <script defer src="/static/js/utils.min.js"></script>
+        <script async src="/static/js/common.js"></script>
+        <link href="static/css/roselia.min.css" rel="stylesheet" type="text/css">
+        <script defer>
+            var resizer = function() {
+                $(".parallax-container").css("min-height", window.innerHeight + "px"),
+                $(".parallax-container").find(".parall-pic-first").css("min-height", window.innerHeight - $("#mobile-nav").height() + "px"),
+                $(".parall-pic").width(window.innerWidth)
+            };
+            $(document).ready(function() {
+                $(".button-collapse").sideNav(),
+                $(".parallax").parallax(),
+                resizer(),
+                $(window).resize(resizer)
+            });
+        </script>
+    </body>
+</html>
