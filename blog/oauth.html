@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oauth</title>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<nav class="blog-color" id="mobile-nav">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="mobile-list" class="button-collapse"><i class="material-icons">menu</i> </a>
+        <div class="container">
+            <a href="./" class="brand-logo blog-title">Roselia-Blog</a>
+            <ul class="left hide-on-med-and-down">
+
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Index</a> </li>
+                <li class="active"><a href="#">Oauth</a> </li>
+            </ul>
+            <ul class="side-nav" id="mobile-list">
+                <li><a href="/">Index</a> </li>
+                <li class="active"><a href="#">Oauth</a> </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="" id="content">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card flow-text" id="login-form">
+                    <div v-if="app.loading" class="progress deep-purple accent-1">
+                        <div class="indeterminate blog-color"></div>
+                    </div>
+                    <div v-if="app.isValid" class="row card-content">
+                        <div class="col container">
+                            <span class="card-title blog-text" v-text="app.appName || 'Err...'">Roselia</span>
+                            <p v-if="app.appName">Get access to {{ app.appName }} with {{ app.blogName }} Account.</p>
+                        </div>
+                        <div v-if="app.loginData" class="center-align">
+                            <div class="container row">
+                                <div class="col s12 m12 offset-m3">
+                                    <h5 class="blog-text">{{ app.loginData.username }}, are you wish to continue? </h5>
+                                    <p>{{ app.appName }} will be able to access:</p>
+                                    <ul>
+                                        <li>Your username.</li>
+                                    </ul>
+                                    <p>But {{ app.appName }} will NOT be able to access:</p>
+                                    <ul>
+                                        <li>Your password.</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div v-else class="container row">
+                            <h5 class="blog-text col">Please wait...</h5>
+                        </div>
+
+                    </div>
+                    <div class="row card-content" v-else>
+                        <div class="col container">
+                            <span class="card-title blog-text">Err..</span>
+                            <p>It didn't quite hit the mark.</p>
+                        </div>
+                    </div>
+                    <div v-if="app.isValid" class="card-action right-align">
+                        <div v-if="!app.loading">
+                            <button onclick="app.goLogIn()" class="btn-flat waves-effect left blog-text">Use another account</button>
+                            <button id="decline-button" onclick="app.callBack(false, 'Cancelled')" class="btn-flat waves-effect">Decline</button>
+                            <button id="login-button" onclick="app.authorize()" class="btn waves-effect blog-color">Accept</button>
+                        </div>
+
+                        <div class="preloader-wrapper small active" v-else>
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<footer class="page-footer blog-color">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text blog-title">Roselia-Blog</h5>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            &copy;<script>document.write((new Date()).getFullYear());</script>
+            Designed by Somainer. All Rights Reserved.
+            Powered by Roselia-Blog.
+        </div>
+    </div>
+</footer>
+
+<script defer src="static/js/jquery-3.2.1.min.js"></script>
+<script defer src="static/js/materialize.min.js"></script>
+<script defer src="static/js/vue.min.js"></script>
+<link href="static/css/materialize.min.css" type="text/css" rel="stylesheet">
+<link href="static/css/material_icons.css" type="text/css" rel="stylesheet">
+<link href="static/css/roselia.css" rel="stylesheet" type="text/css">
+<script defer src="static/js/utils.js"></script>
+<script defer src="static/js/oauth.js"></script>
+</body>
+</html>
