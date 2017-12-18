@@ -22,11 +22,11 @@
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Index</a> </li>
-                <li><a href="./login.html" class="username">Login</a> </li>
+                <li><a href="./login" class="username">Login</a> </li>
             </ul>
             <ul class="side-nav" id="mobile-list">
                 <li><a href="/">Index</a> </li>
-                <li><a href="./login.html" class="username">Log-in</a> </li>
+                <li><a href="./login" class="username">Log-in</a> </li>
             </ul>
         </div>
     </div>
@@ -50,7 +50,7 @@
     <div class="section">
         <div id="content" class="row" style="display: none;">
             <div v-if="userData && userData.role" class="fixed-action-btn">
-                <a class="btn-floating btn-large blog-color waves-effect" href="edit.html">
+                <a class="btn-floating btn-large blog-color waves-effect" href="edit">
                   <i class="large material-icons">add</i>
                 </a>
                 <ul>
@@ -66,7 +66,7 @@
                 <li v-for="post in posts">
                     <div class="card" v-bind:id="'post-' + post.id">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <a v-bind:href="('post.html?p='+post.id)">
+                            <a v-bind:href="('post?p='+post.id)">
                                 <img v-bind:src="post.img || 'static/img/st.jpg'">
                             </a>
                             <div class="card-title col s12" id="tags">
@@ -75,7 +75,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a v-bind:href="('post.html?p='+post.id)">
+                        <a v-bind:href="('post?p='+post.id)">
                         <div class="card-content" style="color:#212121">
                             <p class="right">{{ post.date }}</p>
                             <span class="card-title">{{ post.title }}</span>
@@ -84,7 +84,7 @@
                         </a>
                         <div v-if="userData && userData.role" class="card-action right-align">
                             <button v-bind:onclick="'app.openModal('+post.id+')'" v-if="userData.role" class="btn waves-effect red"><i class="material-icons">delete</i></button>
-                            <a v-bind:href="('edit.html?post='+post.id)" class="btn waves-effect blog-color"><i class="material-icons">mode_edit</i></a>
+                            <a v-bind:href="('edit?post='+post.id)" class="btn waves-effect blog-color"><i class="material-icons">mode_edit</i></a>
                         </div>
                     </div>
 
@@ -95,18 +95,18 @@
                             <p>This post will be deleted, and can NOT be undone.</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-purple btn-flat">No</a>
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-purple btn-flat no-delete">No</a>
                             <button v-bind:onclick="`app.deletePost(${post.id})`" class=" modal-action modal-close waves-effect waves-red btn-flat red-text">Yes</button>
                         </div>
                     </div>
 
                 </li>
             </ul>
-            <ul class="pagination">
+            <!--<ul class="pagination center">
                 <li v-bind:class="prev===-1?'disabled':''"><a v-bind:href="prev===-1?'#!':`./?page=${prev}`"></a></li>
                 <li v-for="idx in app.pages" v-bind:class="idx === app.current?'active blog-color':'waves-effect'"><a v-bind:href="idx===app.current?'#!':`./?page=${idx}`">{{ idx }}</a></li>
                 <li v-bind:class="next===-1?'disabled':''"><a v-bind:href="next===-1?'#!':`./?page=${next}`"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
+            </ul>-->
             <div v-if="posts.length" id="load-new" class="center">
                 <a id="next-btn" v-if="prev!==-1" v-bind:href="`./?page=${prev}`" class="btn waves-light waves-effect blog-color left"><i class="material-icons">chevron_left</i></a>
                 <span>Page: {{ app.current }} of {{ app.pages }}</span>

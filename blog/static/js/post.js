@@ -34,7 +34,7 @@ app.showContent = function (data) {
     content.find('p').each(function (i, item) {
         $(item).addClass('flow-text');
     });
-    data.id && (data.id == app.getPostNum()?history.replaceState({id: data.id}, "", './post.html?p='+data.id):history.pushState({id: data.id}, "", './post.html?p='+data.id));
+    data.id && (data.id == app.getPostNum()?history.replaceState({id: data.id}, "", './post?p='+data.id):history.pushState({id: data.id}, "", './post?p='+data.id));
     app.setBtns();
     utils.colorUtils.apply({selector: "#main-pic", text:"#content,#sub-title,#date", changeText: true});
     //$.adaptiveBackground.run({selector:"#main-pic", parent: $("#content"), normalizeTextColor: true});
@@ -42,14 +42,14 @@ app.showContent = function (data) {
 };
 app.setBtns = function () {
     let next = app.getOffset(1), prev = app.getOffset(-1);
-    $("#next-btn").attr('href', './post.html?p=' + next).css('display', next>=0?"":"none");
-    $("#prev-btn").attr('href', './post.html?p=' + prev).css('display', prev>=0?"":"none");
+    $("#next-btn").attr('href', './post?p=' + next).css('display', next>=0?"":"none");
+    $("#prev-btn").attr('href', './post?p=' + prev).css('display', prev>=0?"":"none");
 };
 app.loadContent = function (callback, p) {
     if(p === undefined) p = app.getPostNum();
     let notFound = {
             title: 'Page Not Found',
-            subtitle: "Please check your post-id. Or try to <a href='login.html' onclick='utils.setRedirect(utils.getAbsPath())'" +">Login</a>",
+            subtitle: "Please check your post-id. Or try to <a href='login' onclick='utils.setRedirect(utils.getAbsPath())'" +">Login</a>",
             date: (new Date()).toDateString(),
             tags: ['404'],
             content: '<p>There might be some problem here. Please check your input</p>'
@@ -125,7 +125,7 @@ app.shiftPost = function (offset) {
 };
 
 app.setEditPage = function (e) {
-    $(e).attr('href', './edit.html?post=' + app.getPostNum());
+    $(e).attr('href', './edit?post=' + app.getPostNum());
 };
 
 $(document).ready(function () {
@@ -144,9 +144,9 @@ $(document).ready(function () {
     });
     let userData = utils.getLoginData();
     if(userData){
-        $(".username").html(userData.username).attr('href', './userspace.html');
+        $(".username").html(userData.username).attr('href', './userspace');
     }else{
-        $(".username").attr('href', 'login.html').
+        $(".username").attr('href', 'login').
         attr('onclick', 'utils.setRedirect(utils.getAbsPath())');
     }
     /*new Vue({

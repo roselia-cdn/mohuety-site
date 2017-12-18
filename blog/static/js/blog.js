@@ -181,7 +181,7 @@ app.deletePost = function (pid) {
                 bar.stopAnimate();
                 if(data.msg === 'expired'){
                     Materialize.toast('Token Expired!', 2000, "", function () {
-                        app.makeRedirect('login.html', window.location.href);
+                        app.makeRedirect('login', window.location.href);
                     });
                 }else{
                     Materialize.toast(data.msg);
@@ -226,10 +226,10 @@ $(document).ready(function () {
     resizer();
     $(window).resize(resizer);
     if(userData){
-        $(".username").html(userData.username).attr('href', './userspace.html');
+        $(".username").html(userData.username).attr('href', './userspace');
     }
     $(".modal").modal();
-    utils.colorUtils.apply({selector: "#main-pic", target:"body,.card", text:"#content,#sub-title,#date,.card-content", changeText: true, textColors:{light:"#eeeeee", dark:"#212121"}});
+    utils.colorUtils.apply({selector: "#main-pic", target:"body,.card,.modal,.modal-footer", text:"#content,#sub-title,#date,.card-content,.no-delete", changeText: true, textColors:{light:"#eeeeee", dark:"#212121"}});
     app.getPosts();
     $(".dropdown-button").dropdown();
     $(window).scroll(function(){
