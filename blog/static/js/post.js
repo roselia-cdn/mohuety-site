@@ -6,6 +6,8 @@ var resizer = function () {
 };
 
 window.app = {};
+window.roselia = app;
+utils.setUpEvents(app, ['load', 'unload', 'render']);
 app.firstLoad = function () {
     $('.parallax-container').stop(false, true).animate({height: (window.innerHeight - $('#mobile-nav').height()) + "px"}, "normal", "swing")
         .delay(1000).animate({height: (window.innerHeight - $('#mobile-nav').height())*0.618 + "px"}, "normal", "swing");
@@ -27,7 +29,7 @@ app.showContent = function (data) {
     });
     let content = $("#content");
     content.html(data.content);
-    $("#main-pic").attr('src', data.img || 'static/img/mont-fuji.JPG');
+    $("#main-pic").attr('src', data.img || 'static/img/nest.png');
     content.find('img').each(function (i, item) {
         $(item).addClass('responsive-img');
     });
@@ -45,7 +47,7 @@ app.setBtns = function () {
     $("#next-btn").attr('href', './post?p=' + next).css('display', next>=0?"":"none");
     $("#prev-btn").attr('href', './post?p=' + prev).css('display', prev>=0?"":"none");
 };
-app.loadContent = function (callback, p) {
+app.loadContent = function (p) {
     if(p === undefined) p = app.getPostNum();
     let notFound = {
             title: 'Page Not Found',
@@ -78,7 +80,7 @@ app.loadContent = function (callback, p) {
                 }
                 data || bar.abort();
                 app.showContent(data || notFound);
-                if(callback) callback();
+                app.triggerLoad();
                 bar.stopAnimate();
             },
             error: function () {
@@ -117,10 +119,7 @@ app.shiftPost = function (offset) {
 
     app.loading = true;
     $("html,body").animate({scrollTop: 0});
-    app.loadContent(function (data) {
-        utils.setHeimu();
-
-    }, idx);
+    app.loadContent(idx);
 
 };
 
@@ -134,13 +133,7 @@ $(document).ready(function () {
     $('.parallax').parallax();
     $(window).resize(resizer);
     $(window).scroll(function(){
-        let w_height = $(window).height();
-        let scroll_top = $(document).scrollTop();
-        if(scroll_top > w_height){
-            $(".gotop").fadeIn(500);
-        }else{
-            $(".gotop").fadeOut(500);
-        }
+        $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
     });
     let userData = utils.getLoginData();
     if(userData){
@@ -158,10 +151,11 @@ $(document).ready(function () {
     new Vue({
         el: "#main",
         data: {
-            userData: userData
+            app, userData
         }
     });
     app.loading = true;
-    app.loadContent(utils.setHeimu);
+    app.onLoad(utils.setHeimu);
+    app.loadContent();
     window.addEventListener('popstate', e => e.state.id && app.loadContent(utils.setHeimu, e.state.id))
 });

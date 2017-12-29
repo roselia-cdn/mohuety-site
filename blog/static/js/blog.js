@@ -33,7 +33,8 @@ app.shiftPage = function (offset) {
     let page = this.getPageOffset(offset);
     if(page === -1) return;
     $("body,html").animate({scrollTop: 0}, 'fast', 'swing');
-    history.pushState({}, "", './?page='+page);
+    history.pushState({id: page}, `${utils.BLOG_TITLE} - Page#${page}`, './?page='+page);
+    document.title = `${utils.BLOG_TITLE} - Page#${page}`
     this.getPosts(page);
 };
 
@@ -49,7 +50,9 @@ app.getPosts = function (page) {
     if(tag) get_data.tag = tag;
     page = page || utils.getArguments().page || 1;
     get_data.page = page;
-
+    app.current = parseInt(page);
+    app.nextPage = app.getPageOffset(1)
+    app.prevPage = app.getPageOffset(-1)
     get_data.limit = 6;
     $.ajax({
         type: "GET",
@@ -83,17 +86,10 @@ app.getPosts = function (page) {
             app.total = parseInt(raw_data.total);
             app.pages = parseInt(raw_data.pages);
             app.current = parseInt(page);
+            app.nextPage = app.getPageOffset(1)
+            app.prevPage = app.getPageOffset(-1)
+            app.onLoaded();
             //console.log(data.reverse());
-            new Vue({
-                el: '#content',
-                data: {
-                    posts: app.postData,
-                    userData: utils.getLoginData(),
-                    prev: app.getPageOffset(-1),
-                    next: app.getPageOffset(1),
-                    app: app
-                }
-            });
             $("#content").fadeIn();
             bar.stopAnimate();
 
@@ -217,6 +213,27 @@ app.checkTime = function(){
     $("#main-pic").attr('src', pics_arr[Math.floor(Math.random()*pics_arr.length)]);
 }
 
+app.initVue = function(){
+    this.postData = []
+    this.userData = utils.getLoginData()
+    this.nextPage = this.getPageOffset(1)
+    this.prevPage = this.getPageOffset(-1)
+    this.mainVue = new Vue({
+        el: '#content',
+        data: {
+            posts: this.postData,
+            userData: this.userData,
+            prev: this.prevPage,
+            next: this.nextPage,
+            app: this
+        }
+    });
+}
+
+app.onLoaded = function(){
+    utils.colorUtils.apply({selector: "#main-pic", target:"body,.card,.modal,.modal-footer", text:"#content,#sub-title,#date,.card-content,.no-delete", changeText: true, textColors:{light:"#eeeeee", dark:"#212121"}});
+}
+
 $(document).ready(function () {
     app.checkTime();
     let userData = utils.getLoginData();
@@ -229,16 +246,12 @@ $(document).ready(function () {
         $(".username").html(userData.username).attr('href', './userspace');
     }
     $(".modal").modal();
-    utils.colorUtils.apply({selector: "#main-pic", target:"body,.card,.modal,.modal-footer", text:"#content,#sub-title,#date,.card-content,.no-delete", changeText: true, textColors:{light:"#eeeeee", dark:"#212121"}});
+    app.initVue();
     app.getPosts();
+    history.replaceState({id: app.current}, "", window.location.href)
+    window.addEventListener('popstate', e => e.state.id && app.getPosts(e.state.id))
     $(".dropdown-button").dropdown();
     $(window).scroll(function(){
-      let w_height = $(window).height();
-      let scroll_top = $(document).scrollTop();
-      if(scroll_top > w_height){
-          $(".gotop").fadeIn(500);
-        }else{
-          $(".gotop").fadeOut(500);
-      }
+        $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
     });
 });
