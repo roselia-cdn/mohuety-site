@@ -34,7 +34,7 @@ app.shiftPage = function (offset) {
     if(page === -1) return;
     $("body,html").animate({scrollTop: 0}, 'fast', 'swing');
     history.pushState({id: page}, `${utils.BLOG_TITLE} - Page#${page}`, './?page='+page);
-    document.title = `${utils.BLOG_TITLE} - Page#${page}`
+    document.title = `${utils.BLOG_TITLE} - Page#${page}`;
     this.getPosts(page);
 };
 
@@ -79,6 +79,7 @@ app.getPosts = function (page) {
             }
             if(!raw_data.valid){
                 if(user_data) Materialize.toast("Token expired.");
+                $(".username").text("login").attr("href", "login");
                 utils.removeLoginData();
             }
             //data.reverse();

@@ -126,7 +126,7 @@ utils.processPosts = function (callback) {
 
 utils.setUpEvents = function(app, events){
     app = app || this;
-    app.events = events.map(s => s.toLowerCase()) || ['load', 'unload', 'render'];
+    app.events = events && events.map(s => s.toLowerCase()) || ['load', 'unload', 'render'];
     ["on", "once"].forEach((cond, isOnce) => app[cond] = function(event, f, ...args){
         this.hooks = this.hooks || {};
         this.hooks[event] = this.hooks[event] || [];
