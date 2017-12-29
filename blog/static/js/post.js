@@ -49,6 +49,7 @@ app.setBtns = function () {
 };
 app.loadContent = function (p) {
     if(p === undefined) p = app.getPostNum();
+    else this.triggerUnload();
     let notFound = {
             title: 'Page Not Found',
             subtitle: "Please check your post-id. Or try to <a href='login' onclick='utils.setRedirect(utils.getAbsPath())'" +">Login</a>",
