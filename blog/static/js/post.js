@@ -158,5 +158,5 @@ $(document).ready(function () {
     app.loading = true;
     app.onLoad(utils.setHeimu);
     app.loadContent();
-    window.addEventListener('popstate', e => e.state.id && app.loadContent(utils.setHeimu, e.state.id))
+    window.addEventListener('popstate', e => e.state.id && app.loadContent(e.state.id))
 });
