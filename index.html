@@ -111,6 +111,7 @@
         <script defer src="https://cdn.bootcss.com/materialize/0.100.1/js/materialize.min.js"></script>
         <link href="static/css/material_icons.min.css" type="text/css" rel="stylesheet">
         <script async src="static/js/common.js"></script>
+        <script defer src="static/js/advb.js"></script>
         <script>
             var resizer = function() {
                 $(".parallax-container").css("min-height", window.innerHeight - $("#mobile-nav").height() + "px"),
@@ -120,7 +121,42 @@
                 $(".button-collapse").sideNav(),
                 $(".parallax").parallax(),
                 resizer(),
-                $(window).resize(resizer)
+                $(window).resize(resizer);
+                AdvNotify.of({
+                    events:AdvNotify.helper({
+                            date: "{{date}}",
+                            color: "{{color}}",
+                            textColor: "#ffffff",
+                            text: "Happy birthdy, {{ enName }}! - {{ role }}{{ jpName }}",
+                            needsRender: ["date", "color", "text"]
+                        }, [
+                            {date: "3-20", enName:"Sayo", role: "Roselia.Gt.", jpName: "氷川 紗夜", color: "#81d8d4"}, 
+                            {date: "7-3", enName:"Ako", role: "Roselia.Dr.", jpName: "宇田川 あこ", color: "#fb81ca"}, 
+                            {date: "10-26", enName:"Yukina", role: "Roselia.Vo.", jpName: "湊 友希那", color: "#c67cb5"}, 
+                            {date: "10-17", enName:"Rinko", role: "Roselia.Key.", jpName: "白金 燐子", color: "#cbc5ce"}, 
+                            {date: "8-25", enName:"Lisa", role: "Roselia.Ba.", jpName: "今井 リサ", color: "#fc926c"}, 
+                            {date: "8-1", enName:"Chika", role: "Aqours.", jpName: "高海千歌", color: "#f08300"}, 
+                            {date: "9-19", enName:"Riko", role: "Aqours.", jpName: "桜内梨子", color: "#ff9999"}, 
+                            {date: "4-17", enName:"You", role: "Aqours.", jpName: "渡辺曜", color: "#44aaff"}, 
+                            {date: "2-10", enName:"Kanan", role: "Aqours.", jpName: "松浦果南", color: "#229977"}, 
+                            {date: "1-1", enName:"Dia", role: "Aqours.", jpName: "黒澤ダイヤ", color: "#ff4a4a"}, 
+                            {date: "6-13", enName:"Mari", role: "Aqours.", jpName: "小原鞠莉", color: "#d47aff"}, 
+                            {date: "7-13", enName:"Yohane", role: "Aqours.", jpName: "津島善子", color: "#7a7a7a"}, 
+                            {date: "3-4", enName:"Zuramaru", role: "Aqours.", jpName: "国木田花丸", color: "#dbb623"}, 
+                            {date: "9-21", enName:"Ruby", role: "Aqours.", jpName: "黒澤ルビィ", color: "#ff5599"}, 
+                            {date: "8-3", enName:"Honoka", role: "μ's.", jpName: "高坂穂乃果", color: "orange"}, 
+                            {date: "9-12", enName:"Kotori(・8・)", role: "μ's.", jpName: "南ことり", color: "grey"}, 
+                            {date: "3-15", enName:"Umi", role: "μ's.", jpName: "園田海未", color: "blue"}, 
+                            {date: "10-21", enName:"KKE", role: "μ's.", jpName: "絢瀬絵里", color: "aqua"}, 
+                            {date: "6-9", enName:"Nozomi", role: "μ's.", jpName: "東條希", color: "purple"}, 
+                            {date: "7-22", enName:"Nico", role: "μ's.", jpName: "矢澤にこ", color: "pink"}, 
+                            {date: "4-19", enName:"Maki", role: "μ's.", jpName: "西木野真姫", color: "red"}, 
+                            {date: "1-17", enName:"Hanayo", role: "μ's.", jpName: "小泉花陽", color: "green"}, 
+                            {date: "11-1", enName:"Rin", role: "μ's.", jpName: "星空凛", color: "yellow"}, 
+                            {date: "4-22", enName:"Somainer", role: "Dev.", jpName: "Somainer", color: "#0097a7"}, 
+                        ]
+                    )
+                });
             });
         </script>
     </body>
