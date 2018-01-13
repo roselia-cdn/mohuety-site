@@ -25,7 +25,7 @@ $(document).ready(function () {
         }, 2000);
     }
     addEventListener("storage", e => {
-        e.key === "loginData" && (e.newValue || app.makeRedirect("login."));
+        e.key === "loginData" && (e.newValue || app.makeRedirect("login"));
     });
     if(!userData.role){
         $("#content").fadeOut();
