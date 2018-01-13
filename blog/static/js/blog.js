@@ -79,7 +79,6 @@ app.getPosts = function (page) {
             }
             if(!raw_data.valid){
                 if(user_data) Materialize.toast("Token expired.");
-                $(".username").text("login").attr("href", "login");
                 utils.removeLoginData();
             }
             //data.reverse();
