@@ -52,6 +52,8 @@ utils.setLoginData = data => window.localStorage.loginData = JSON.stringify(data
 
 utils.removeLoginData = () => window.localStorage.loginData && window.localStorage.removeItem("loginData");
 
+utils.setLoginUI = (data) => (data || (data = utils.getLoginData())) ? $(".username").text(data.username).attr('href', './userspace') : $(".username").text("Login").attr('onclick', 'utils.setRedirect(utils.getAbsPath())').attr('href', './login');
+
 utils.getPosts = function (callback) {
     let args = {}, login = utils.getLoginData();
     if(login) args.token = login.token;

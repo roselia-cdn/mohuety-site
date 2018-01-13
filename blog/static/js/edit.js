@@ -21,9 +21,12 @@ $(document).ready(function () {
         $("#content").fadeOut();
         Materialize.toast("Please login first.");
         setTimeout(function () {
-            app.makeRedirect('login.html');
+            app.makeRedirect('login');
         }, 2000);
     }
+    addEventListener("storage", e => {
+        e.key === "loginData" && (e.newValue || app.makeRedirect("login."));
+    });
     if(!userData.role){
         $("#content").fadeOut();
         Materialize.toast("You are not supposed to do this.", 2000);

@@ -17,6 +17,8 @@ app.firstLoad = function () {
 app.getPostNum = () => utils.getArguments().p || -1;
 
 app.showContent = function (data) {
+    this.triggerRender(data);
+    this.postData = data;
     document.title = data.title;
     let metaTitle = $("meta[name=apple-mobile-web-app-title]");
     metaTitle && metaTitle.attr("content", data.title);
@@ -137,12 +139,22 @@ $(document).ready(function () {
         $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
     });
     let userData = utils.getLoginData();
-    if(userData){
-        $(".username").html(userData.username).attr('href', './userspace');
-    }else{
-        $(".username").attr('href', 'login').
-        attr('onclick', 'utils.setRedirect(utils.getAbsPath())');
-    }
+    utils.setLoginUI(userData);
+    app.userData = userData;
+    addEventListener("storage", e => {
+        app.userData = utils.getLoginData();
+        utils.setLoginUI(app.userData);
+        app.postData && app.postData.notFound && app.loadContent();
+        app.postData && app.postData.secret && ((!app.userData) || (app.userData.role + 1 < app.postData.secret)) && app.showContent({
+            title: 'Oops!',
+            subtitle: "You have no access to this post. Please try to <a href='login.html' onclick='utils.setRedirect(utils.getAbsPath())'" +">Login</a>",
+            date: (new Date()).toDateString(),
+            tags: ['403'],
+            content: '<p>This post has a level beyond you!</p>',
+            secret: 0,
+            notFound: true
+        });
+    });
     /*new Vue({
         el: "#post",
         data: {

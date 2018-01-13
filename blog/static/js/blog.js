@@ -194,18 +194,6 @@ app.deletePost = function (pid) {
     })
 };
 
-app.setScrollFire = function () {
-    Materialize.scrollFire([{
-        selector: "#load-new",
-        offset: 0,
-        callback: e => {
-            Materialize.toast("Loading...");
-            window.location.href = '#';
-            app.setScrollFire();
-        }
-    }]);
-};
-
 app.checkTime = function(){
     let hour = (new Date).getHours();
     let morning = (hour>6 && hour<18);
@@ -246,6 +234,9 @@ $(document).ready(function () {
     if(userData){
         $(".username").html(userData.username).attr('href', './userspace');
     }
+    app.userData = userData;
+    utils.setLoginUI(userData);
+    addEventListener("storage", e => (e.key === 'loginData') && (utils.setLoginUI(), app.getPosts(), app.userData = utils.getLoginData()));
     $(".modal").modal();
     app.initVue();
     app.getPosts();
