@@ -11,7 +11,7 @@ $(document).ready(function () {
     resizer();
     $(window).resize(resizer);
     addEventListener("storage", e => {
-        e.key === "loginData" && (e.newValue || (utils.setRedirect(utils.getAbsPath()), utils.redirectTo("./login.html")));
+        e.key === "loginData" && (e.newValue || (utils.setRedirect(utils.getAbsPath()), utils.redirectTo("./login")));
     });
     app.loading = false;
     let lang = navigator.language || navigator.browserLanguage;
