@@ -47,7 +47,6 @@
             z-index: 99999;\
             ', Object.assign({color: payload.color, defaultHeight: o.global.defaultHeight}, payload.data))
             
-            console.log("CLR:", payload.textColor || o.global.textColor || "");
             span.style.color = (payload.textColor || o.global.textColor || "");
             aTag.appendChild(span);
             divTag.appendChild(aTag);
@@ -55,7 +54,6 @@
         }
         o.global = o.global || {};
         _.deepExtend(o.global, defaults.global);
-        console.log(o);
         let opts = o.events;
         //Rendering Elements of needsRender
         opts.forEach(e => {
@@ -70,7 +68,6 @@
                 prevTarget[varMap[varMap.length - 1]] = _.render(target, e.data);
             })
         });
-        console.log(opts);
         let targets = opts.filter(d => _.sameDate(d.date, dat));
         this.targets = targets.length ? targets : opts.filter(d => d.date === "else");
         this.targets.forEach(e => this.createElement(e, o.global.element));

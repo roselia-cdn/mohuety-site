@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mohuety</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+    </head>
+    <body>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <nav class="main-color" id="mobile-nav">
+            <div class="nav-wrapper">
+                <a href="#" data-activates="mobile-list" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
+                <div class="container">
+                    <a href="#" class="brand-logo">Mohuety</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li class="active">
+                            <a href="#">Index</a>
+                        </li>
+                        <li>
+                            <a href="/blog">Blog</a>
+                        </li>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-list">
+                        <li class="active">
+                            <a href="#">Index</a>
+                        </li>
+                        <li>
+                            <a href="/blog">Blog</a>
+                        </li>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="parallax-container white-text">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br>
+                    <br>
+                    <h1 class="header center main-text">Mohuety</h1>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Do what you want to do, be who you want to be.</h5>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax" id="main-pic">
+                <img class="parall-pic" src="static/img/yasuko.webp">
+            </div>
+        </div>
+        <div class="parallax-container white-text">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <br>
+                    <br>
+                    <h1 class="header center main-text">OFFLINE</h1>
+                    <div class="row center white-text">
+                        <p class="flow-text">This means you are offline now, please check your network.(:D)</p>
+                        
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax" id="main-pic">
+                <img class="parall-pic" src="static/img/jr.JPG">
+            </div>
+        </div>
+        <footer class="page-footer main-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Mohuety</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    &copy;<script>
+                        document.write((new Date).getFullYear());
+                    </script>
+                    Mohuety. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+        <link rel="stylesheet" href="static/css/mohuety.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/materialize/0.100.1/css/materialize.min.css">
+        <link href="static/css/material_icons.min.css" type="text/css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script defer src="https://cdn.bootcss.com/materialize/0.100.1/js/materialize.min.js"></script>
+        <script async src="static/js/common.js"></script>
+        <script defer src="static/js/adovec-notify.js"></script>
+        <script>
+            var resizer = function() {
+                $(".parallax-container").css("min-height", window.innerHeight - $("#mobile-nav").height() + "px"),
+                $(".parall-pic").width(window.innerWidth)
+            };
+            $(document).ready(function() {
+                $(".button-collapse").sideNav(),
+                $(".parallax").parallax(),
+                resizer(),
+                $(window).resize(resizer);
+                AdovecNotify.of({
+                    events:AdovecNotify.helper({
+                            date: "{{date}}",
+                            color: "{{color}}",
+                            textColor: "#ffffff",
+                            text: "Happy birthdy, {{ enName }}! - {{ role }}{{ jpName }}",
+                            needsRender: ["date", "color", "text"]
+                        }, [
+                            {date: "3-20", enName:"Sayo", role: "Roselia.Gt.", jpName: "氷川 紗夜", color: "#81d8d4"}, 
+                            {date: "7-3", enName:"Ako", role: "Roselia.Dr.", jpName: "宇田川 あこ", color: "#fb81ca"}, 
+                            {date: "10-26", enName:"Yukina", role: "Roselia.Vo.", jpName: "湊 友希那", color: "#c67cb5"}, 
+                            {date: "10-17", enName:"Rinko", role: "Roselia.Key.", jpName: "白金 燐子", color: "#cbc5ce"}, 
+                            {date: "8-25", enName:"Lisa", role: "Roselia.Ba.", jpName: "今井 リサ", color: "#fc926c"}, 
+                            {date: "8-1", enName:"Chika", role: "Aqours.", jpName: "高海千歌", color: "#f08300"}, 
+                            {date: "9-19", enName:"Riko", role: "Aqours.", jpName: "桜内梨子", color: "#ff9999"}, 
+                            {date: "4-17", enName:"You", role: "Aqours.", jpName: "渡辺曜", color: "#44aaff"}, 
+                            {date: "2-10", enName:"Kanan", role: "Aqours.", jpName: "松浦果南", color: "#229977"}, 
+                            {date: "1-1", enName:"Dia", role: "Aqours.", jpName: "黒澤ダイヤ", color: "#ff4a4a"}, 
+                            {date: "6-13", enName:"Mari", role: "Aqours.", jpName: "小原鞠莉", color: "#d47aff"}, 
+                            {date: "7-13", enName:"Yohane", role: "Aqours.", jpName: "津島善子", color: "#7a7a7a"}, 
+                            {date: "3-4", enName:"Zuramaru", role: "Aqours.", jpName: "国木田花丸", color: "#dbb623"}, 
+                            {date: "9-21", enName:"Ruby", role: "Aqours.", jpName: "黒澤ルビィ", color: "#ff5599"}, 
+                            {date: "8-3", enName:"Honoka", role: "μ's.", jpName: "高坂穂乃果", color: "orange"}, 
+                            {date: "9-12", enName:"Kotori(・8・)", role: "μ's.", jpName: "南ことり", color: "grey"}, 
+                            {date: "3-15", enName:"Umi", role: "μ's.", jpName: "園田海未", color: "blue"}, 
+                            {date: "10-21", enName:"KKE", role: "μ's.", jpName: "絢瀬絵里", color: "aqua"}, 
+                            {date: "6-9", enName:"Nozomi", role: "μ's.", jpName: "東條希", color: "purple"}, 
+                            {date: "7-22", enName:"Nico", role: "μ's.", jpName: "矢澤にこ", color: "pink"}, 
+                            {date: "4-19", enName:"Maki", role: "μ's.", jpName: "西木野真姫", color: "red"}, 
+                            {date: "1-17", enName:"Hanayo", role: "μ's.", jpName: "小泉花陽", color: "green"}, 
+                            {date: "11-1", enName:"Rin", role: "μ's.", jpName: "星空凛", color: "yellow"}, 
+                            {date: "4-22", enName:"Somainer", role: "Dev.", jpName: "Somainer", color: "#0097a7"}, 
+                        ]
+                    )
+                });
+            });
+        </script>
+    </body>
+</html>

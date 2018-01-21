@@ -6,10 +6,10 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-104915625-1', 'auto');
 ga('send', 'pageview');
 
-/*
+
 if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js');
-}*/
+}
 
-console.log("%c What? You opened the console!", 'font-size: 20px;font-family: "微软雅黑", sans-serif;color: #651fff;');
-console.log("%c DO NOT PASTE ANY CODE HERE %c unless you know what you are doing.", 'font-size: 16px;font-family: "微软雅黑", sans-serif;color: #ad1457;', 'font-size: 16px;font-family: "微软雅黑", sans-serif;color: #651fff;');
+console.log("%c What? You opened the console!", 'font-size: 20px;font-family: "微软雅黑", sans-serif;color: #0288d1;');
+console.log("%c DO NOT PASTE ANY CODE HERE %c unless you know what you are doing.", 'font-size: 16px;font-family: "微软雅黑", sans-serif;color: #ad1457;', 'font-size: 16px;font-family: "微软雅黑", sans-serif;color: #0288d1;');
