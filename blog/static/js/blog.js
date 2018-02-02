@@ -89,7 +89,7 @@ app.getPosts = function (page) {
             app.current = parseInt(page);
             app.nextPage = app.getPageOffset(1)
             app.prevPage = app.getPageOffset(-1)
-            app.onLoaded();
+            app.mainVue.$nextTick(() => app.onLoaded());
             //console.log(data.reverse());
             $("#content").fadeIn();
             bar.stopAnimate();
@@ -221,6 +221,8 @@ app.initVue = function(){
 
 app.onLoaded = function(){
     utils.colorUtils.apply({selector: "#main-pic", target:"body,.card,.modal,.modal-footer", text:"#content,#sub-title,#date,.card-content,.no-delete", changeText: true, textColors:{light:"#eeeeee", dark:"#212121"}});
+    if(app.lazyLoad) app.lazyLoad.load();
+    else app.lazyLoad = utils.LazyLoad.of({placeHolder: "static/img/observe.jpg"});
 }
 
 $(document).ready(function () {
@@ -230,7 +232,7 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
     $('.parallax').parallax();
     resizer();
-    $(window).resize(resizer);
+    $(window).resize(utils.debounce(resizer, 500));
     if(userData){
         $(".username").html(userData.username).attr('href', './userspace');
     }
@@ -243,7 +245,7 @@ $(document).ready(function () {
     history.replaceState({id: app.current}, "", window.location.href)
     window.addEventListener('popstate', e => e.state.id && app.getPosts(e.state.id))
     $(".dropdown-button").dropdown();
-    $(window).scroll(function(){
+    $(window).scroll(utils.throttle(function(){
         $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
-    });
+    }, 500));
 });

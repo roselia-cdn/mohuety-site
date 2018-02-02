@@ -38,6 +38,8 @@ app.showContent = function (data) {
     content.find('p').each(function (i, item) {
         $(item).addClass('flow-text');
     });
+    if(app.lazyLoad) app.lazyLoad.load();
+    else app.lazyLoad = utils.LazyLoad.of({placeHolder: "static/img/observe.jpg"});
     data.id && (data.id == app.getPostNum()?history.replaceState({id: data.id}, "", './post?p='+data.id):history.pushState({id: data.id}, "", './post?p='+data.id));
     app.setBtns();
     utils.colorUtils.apply({selector: "#main-pic", text:"#content,#sub-title,#date", changeText: true});
@@ -135,10 +137,10 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
     resizer();
     $('.parallax').parallax();
-    $(window).resize(resizer);
-    $(window).scroll(function(){
+    $(window).resize(utils.debounce(resizer, 500));
+    $(window).scroll(utils.throttle(function(){
         $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
-    });
+    }, 500));
     let userData = utils.getLoginData();
     utils.setLoginUI(userData);
     app.userData = userData;
