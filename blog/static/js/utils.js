@@ -178,6 +178,7 @@ utils.LazyLoad = function($){
             prefix: "roselia",
             onscrolledimg: null,
             delim: ["{{", "}}"],
+            backupSrc: true,
             throttleRate: 500
         };
         this.alive = false;
@@ -193,7 +194,7 @@ utils.LazyLoad = function($){
             if(this.options.changePlaceHolder){
                 this.pics.forEach(e => {
                     let attr = options.prefix+"-src";
-                    e.getAttribute(attr) || e.setAttribute(attr, e.src);
+                    options.backupSrc && e.setAttribute(attr, e.src);
                     e.src = options.changePlaceHolder?_.render(options.placeHolder, e, options.delim):options.placeHolder;
                 });
             }
