@@ -191,6 +191,7 @@ utils.LazyLoad = function($){
             this.alive && this.destroy();
             this.alive = true;
             this.pics = document.querySelectorAll(options.selector);
+            this.pics.forEach = this.pics.forEach || [].forEach;
             if(this.options.changePlaceHolder){
                 this.pics.forEach(e => {
                     let attr = options.prefix+"-src";

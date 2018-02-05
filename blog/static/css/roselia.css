@@ -12,6 +12,11 @@ code{
     font-family: Consolas, "Courier New", monospace;
 }
 
+::selection{
+    background: #0288d1;
+    color: #fff;
+}
+
 span.heimu {background:black;color:black;}
 span.heimu a:link{background:black;color:black !important;}
 span.heimu a:visited{background:black;color:black !important;}
