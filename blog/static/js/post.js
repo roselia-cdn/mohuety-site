@@ -5,7 +5,7 @@ var resizer = function () {
     //document.getElementById("homura").width = window.innerWidth;
 };
 
-window.app = {};
+window.app = {postDigest: []};
 window.roselia = app;
 utils.setUpEvents(app, ['load', 'unload', 'render']);
 app.firstLoad = function () {
@@ -32,6 +32,10 @@ app.showContent = function (data) {
     let content = $("#content");
     content.html(data.content);
     $("#main-pic").attr('src', data.img || 'static/img/nest.png');
+    this.processContent();
+};
+app.processContent = function(){
+    let content = $("#content");
     content.find('img').each(function (i, item) {
         $(item).addClass('responsive-img');
     });
@@ -40,16 +44,26 @@ app.showContent = function (data) {
     });
     if(app.lazyLoad) app.lazyLoad.load();
     else app.lazyLoad = utils.LazyLoad.of({placeHolder: "static/img/observe.jpg"});
-    data.id && (data.id == app.getPostNum()?history.replaceState({id: data.id}, "", './post?p='+data.id):history.pushState({id: data.id}, "", './post?p='+data.id));
     app.setBtns();
-    utils.colorUtils.apply({selector: "#main-pic", text:"#content,#sub-title,#date", changeText: true});
-    //$.adaptiveBackground.run({selector:"#main-pic", parent: $("#content"), normalizeTextColor: true});
-    //app.firstLoad();
+    app.trigger("load");
+    utils.colorUtils.apply({selector: "#main-pic", text:"#content,#sub-title,#date,.digest-nav-el", changeText: true});
+    this.setDigest();
 };
 app.setBtns = function () {
     let next = app.getOffset(1), prev = app.getOffset(-1);
     $("#next-btn").attr('href', './post?p=' + next).css('display', next>=0?"":"none");
     $("#prev-btn").attr('href', './post?p=' + prev).css('display', prev>=0?"":"none");
+};
+app.setDigest = function(){
+    this.postDigest = $("#content h1,h2,h3").map(function (i) {
+        $(this).addClass("section scrollspy");
+        return [[this.id = this.id || `section-${i}`, this.innerHTML]];
+    }).get();
+    $("#digest-nav").pushpin({
+        top: $(window).height()*0.7,
+        offset: 150
+    });
+    app.mainVue.$nextTick(() => $(".scrollspy").scrollSpy());
 };
 app.loadContent = function (p) {
     if(p === undefined) p = app.getPostNum();
@@ -86,7 +100,6 @@ app.loadContent = function (p) {
                 }
                 data || bar.abort();
                 app.showContent(data || notFound);
-                app.triggerLoad();
                 bar.stopAnimate();
             },
             error: function () {
@@ -164,7 +177,7 @@ $(document).ready(function () {
             userData: userData
         }
     });*/
-    new Vue({
+    app.mainVue = new Vue({
         el: "#main",
         data: {
             app, userData

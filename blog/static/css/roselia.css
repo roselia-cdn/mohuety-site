@@ -3,6 +3,10 @@
     /*#7c4dff */
 }
 
+.blog-color.btn:hover,.btn-floating:hover{
+    background-color: #039be5 !important;
+}
+
 .blog-text{
     color: #0097a7 !important;
     /* #651fff*/
@@ -10,6 +14,15 @@
 
 code{
     font-family: Consolas, "Courier New", monospace;
+}
+.table-of-contents a.active{
+    border-left: 2px solid #0288d1;
+}
+.table-of-contents a:hover{
+    border-left: 1px solid #0288d1;
+}
+blockquote{
+    border-left: 5px solid #0288d1;
 }
 
 ::selection{
