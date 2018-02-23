@@ -29,6 +29,7 @@ app.showContent = function (data) {
     data.tags.forEach(function (t) {
         $("#tags").append(`<a href='./?tag=${t}'><div class='chip'>${t}</div></a>`);
     });
+    data.id && (data.id == app.getPostNum()?history.replaceState({id: data.id}, "", './post?p='+data.id):history.pushState({id: data.id}, "", './post?p='+data.id));
     let content = $("#content");
     content.html(data.content);
     $("#main-pic").attr('src', data.img || 'static/img/nest.png');
@@ -37,11 +38,12 @@ app.showContent = function (data) {
 app.processContent = function(){
     let content = $("#content");
     content.find('img').each(function (i, item) {
-        $(item).addClass('responsive-img');
+        $(item).addClass('responsive-img').addClass('materialboxed');
     });
     content.find('p').each(function (i, item) {
         $(item).addClass('flow-text');
     });
+    $('.materialboxed').materialbox();
     if(app.lazyLoad) app.lazyLoad.load();
     else app.lazyLoad = utils.LazyLoad.of({placeHolder: "static/img/observe.jpg"});
     app.setBtns();
