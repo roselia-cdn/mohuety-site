@@ -6,6 +6,16 @@
 .blog-color.btn:hover,.btn-floating:hover{
     background-color: #039be5 !important;
 }
+.btn:not([disabled]):active, .btn-floating:not([disabled]):active{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.4);
+}
+.scale-to-zero {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+}
 
 .blog-text{
     color: #0097a7 !important;

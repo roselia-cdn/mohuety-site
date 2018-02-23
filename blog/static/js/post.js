@@ -59,11 +59,15 @@ app.setDigest = function(){
         $(this).addClass("section scrollspy");
         return [[this.id = this.id || `section-${i}`, this.innerHTML]];
     }).get();
-    $("#digest-nav").pushpin({
-        top: $(window).height()*0.7,
-        offset: 150
+    app.mainVue.$nextTick(() => {
+        let $content = $("#content"), $nav = $("#digest-nav");
+        $nav.pushpin({
+            top: $content.offset().top,
+            offset: 150,
+            bottom: $content.height() + $content.offset().top - $nav.height()
+        });
+        $(".scrollspy").scrollSpy();
     });
-    app.mainVue.$nextTick(() => $(".scrollspy").scrollSpy());
 };
 app.loadContent = function (p) {
     if(p === undefined) p = app.getPostNum();
@@ -103,21 +107,11 @@ app.loadContent = function (p) {
                 bar.stopAnimate();
             },
             error: function () {
-                //bar.setColor("#ff80ab", "#c51162");
-
                 app.showContent(notFound);
                 bar.abort("#ff80ab", "#c51162");
                 //bar.stopAnimate();
             }
         });
-        /*
-        $.getJSON('./api/post/'+p, getData, function (data) {
-            app.loading = false;
-            app.postData = data;
-            if(data === 'null') data = notFound;
-            app.showContent(data || notFound);
-            if(callback) callback();
-        });*/
     }
 };
 
@@ -152,7 +146,7 @@ $(document).ready(function () {
     $('.parallax').parallax();
     $(window).resize(utils.debounce(resizer, 500));
     $(window).scroll(utils.throttle(function(){
-        $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
+        $(".gotop .btn-floating, .gotop.btn-floating")[["remove", "add"][($(window).height()>$(document).scrollTop())+0]+"Class"]("scale-to-zero");
     }, 500));
     let userData = utils.getLoginData();
     utils.setLoginUI(userData);
@@ -171,12 +165,6 @@ $(document).ready(function () {
             notFound: true
         });
     });
-    /*new Vue({
-        el: "#post",
-        data: {
-            userData: userData
-        }
-    });*/
     app.mainVue = new Vue({
         el: "#main",
         data: {

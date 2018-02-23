@@ -101,50 +101,6 @@ app.getPosts = function (page) {
             Materialize.toast("Network Error!", 2000);
         }
     });
-    /*
-    $.getJSON('./api/posts', get_data, function (raw_data) {
-        let data = raw_data.data;
-        console.log(tag);
-        if(tag){
-            data = data.filter(function (post) {
-                return post.tags.map(s => s.toLocaleLowerCase()).indexOf(tag.toLocaleLowerCase()) > -1;
-            });
-            if(!data.length) {
-                data = [{
-                    title: 'Tag Not Found',
-                    subtitle: 'Please check your tag.',
-                    date: (new Date()).toDateString(),
-                    tags: ['404'],
-                    id: -1
-                }];
-            }
-            $("#main-title").html(tag);
-            $("#sub-title").html("Posts for tag: " + tag);
-            document.title = "Tag: " + tag;
-        }
-        if(!raw_data.valid){
-            if(user_data) Materialize.toast("Token expired.");
-            utils.removeLoginData();
-        }
-        //data.reverse();
-        app.postData = data;
-        app.total = parseInt(raw_data.total);
-        app.pages = parseInt(raw_data.pages);
-        app.current = parseInt(page);
-        //console.log(data.reverse());
-        new Vue({
-            el: '#content',
-            data: {
-                posts: app.postData,
-                userData: utils.getLoginData(),
-                prev: app.getPageOffset(-1),
-                next: app.getPageOffset(1),
-                app: app
-            }
-        });
-        $("#content").fadeIn();
-        bar.stopAnimate();
-    });*/
 };
 
 app.openModal = function (mid) {
@@ -246,6 +202,6 @@ $(document).ready(function () {
     window.addEventListener('popstate', e => e.state.id && app.getPosts(e.state.id))
     $(".dropdown-button").dropdown();
     $(window).scroll(utils.throttle(function(){
-        $(".gotop")["fade"+["In", "Out"][($(window).height()>$(document).scrollTop())+0]](500);
+        $(".gotop .btn-floating, .gotop.btn-floating")[["remove", "add"][($(window).height()>$(document).scrollTop())+0]+"Class"]("scale-to-zero");
     }, 500));
 });
