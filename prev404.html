@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>404 Not Found</title>
+    <style>
+        body{
+            font-family: Seravek, 'Myriad Pro', Myriad, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Arial Black', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #FFF;
+            padding: 0;
+            margin: 0;
+            background-color: #111;
+            transition: all 1800ms ease;
+        }
+        .white-text{
+            color: #fff;
+            text-decoration: none;
+        }
+        .center-align {
+            text-align: center;
+        }
+        #main{
+            margin: 0 auto;
+
+        }
+       h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+            font-weight: inherit;
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            line-height: 110%;
+            margin: 2.1rem 0 1.68rem 0;
+        }
+        h3 {
+            font-size: 2.92rem;
+            line-height: 110%;
+            margin: 1.46rem 0 1.168rem 0;
+        }
+        h5 {
+            font-size: 1.64rem;
+            line-height: 110%;
+            margin: 0.82rem 0 0.656rem 0;
+        }
+    </style>
+</head>
+<a href="/" class="white-text center-align">
+    <div class="container" id="main">
+        <br/><br/><br/><br/>
+        <h1 class="center-align">Oops! Seemed you've drunk.</h1>
+        <br/>
+        <h3 class="center-align">404 Not Found</h3>
+        <br/>
+        <h5 class="center-align"></h5>
+        <br/>
+        <p>Click here to go home.</p>
+        <br/><br/><br/><br/>
+    </div>
+</a>
+
+<script>
+    const colors = ['#0288d1', '#7c4dff', '#f50057'];
+    var listOfColors = ['#12CD55', '#2089DA', '#DE4D00'];
+	let idx = 0;
+	window.setTimeout(function () {
+		window.setTimeout(function () {
+			window.setInterval(function () {
+				document.getElementsByTagName('body')[0].style.backgroundColor = colors[idx = (idx + 1) % colors.length];
+			}, 2000);
+		}, 800);
+	}, 200);
+</script>
+
+</body>
+</html>

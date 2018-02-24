@@ -1,4 +1,6 @@
-
+---
+permalink: /404.html
+---
 <!DOCTYPE html>
 <html>
 <head>
@@ -365,16 +367,16 @@
 
     @-webkit-keyframes line-highlight {
         0% { background-color: #f0f4fa; }
-        25% { background-color: #b4c5fd; }
+        25% { background-color: #a3c5d6; }
         50% { background-color: #f0f4fa; }
-        75% { background-color: #b4c5fd; }
+        75% { background-color: #a3c5d6; }
     }
 
     @keyframes line-highlight {
         0% { background-color: #f0f4fa; }
-        25% { background-color: #b4c5fd; }
+        25% { background-color: #a3c5d6; }
         50% { background-color: #f0f4fa; }
-        75% { background-color: #b4c5fd; }
+        75% { background-color: #a3c5d6; }
     }
 
     .code-block > .line > .ln {
@@ -655,7 +657,7 @@
                 <small>at {{method}}</small>
                 <small class="path">{{path}}</small>
             </h5>
-            <h1 class="title blog-text">an error found for {{method}} {{path}} (RoseliaBlog.Router)</h1>
+            <h1 class="title blog-text">no route found for {{method}} {{path}} (RoseliaBlog.Router)</h1>
             
         </header>
 
@@ -674,9 +676,10 @@
                         <span class="line "><span class="ln">233</span><span class="code">  def route(path: String): Request =&gt; Response = path match {</span></span>
                         <span class="line "><span class="ln">234</span><span class="code">    case &quot;/&quot; =&gt; Controller.index</span></span>
                         <span class="line "><span class="ln">235</span><span class="code">    ...</span></span>
-                        <span class="line -highlight"><span class="ln">666</span><span class="code">    case "{{ path }}" =&gt; "{{error_taunt}}"</span></span>
-                        <span class="line "><span class="ln">667</span><span class="code">  }</span></span>
-                        <span class="line "><span class="ln">668</span><span class="code">  def scope(scop: String)(f: Request =&gt; Response): Request =&gt; Response = {</span></span>
+                        <span class="line -highlight"><span class="ln">666</span><span class="code">    case "{{ path }}" =&gt; </span></span>
+                        <span class="line "><span class="ln">667</span><span class="code">      Controller.error("{{error_taunt}}")</span></span>
+                        <span class="line "><span class="ln">668</span><span class="code">  }</span></span>
+                        <span class="line "><span class="ln">669</span><span class="code">  def scope(scop: String)(f: Request =&gt; Response): Request =&gt; Response = {</span></span>
                     </pre>
                     
 
@@ -715,7 +718,22 @@
                         </button>
                     </li>
                     <li>
-                        <a href="/blog" class="stack-trace-item" role="stack-trace-item" data-index="0">
+                        <button onclick="nostalgia.call(this)" class="stack-trace-item" role="stack-trace-item">
+                            <span class="left">
+                                
+                                <span class="app">Mohuety</span>
+                                
+
+                                <span class="filename" id="nostalgia">
+                                    Nostalgia
+                                </span>
+                            </span>
+
+                            <span class="info">RoseliaBlog.Controller.DeprecatedPageOf("404")</span>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="{{link}}" class="stack-trace-item" role="stack-trace-item" data-index="0">
                             <span class="left">
                                 
                                 <span class="app">RoseliaBlog</span>
@@ -726,7 +744,7 @@
                                 </span>
                             </span>
 
-                            <span class="info">_ => RoseliaBlog.Router.route("index")</span>
+                            <span class="info">_ => RoseliaBlog.Router.route("{{link.substring(1)||'index'}}")</span>
                         </a>
                     </li>
                 </ul>
@@ -772,13 +790,37 @@
                 e.innerHTML = render(e.innerHTML, context, delim);
             });
         }
+        function addClass (el, className) {
+            if (el.classList) {
+                el.classList.add(className)
+            } else {
+                el.className += ' ' + className
+            }
+        }
+        function removeClass (el, className) {
+            if (el.classList) {
+                el.classList.remove(className)
+            } else {
+                var expr = new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi')
+                el.className = el.className.replace(expr, ' ')
+            }
+        }
+
+        function nostalgia(){
+            [].forEach.call(document.querySelectorAll(".stack-trace-list .-active"), e => removeClass(e, "-active"));
+            document.getElementById("nostalgia").innerText = "Loading, please wait...";
+            addClass(this, "-active");
+            console.log(this);
+            fetch("/prev404").then(r => r.text().then(t => document.write(t)));
+        }
         renderHTML(".top-details, .conn-details", {
             url: location.href,
             method: "GET",
             path: location.pathname,
             error_code: "404 Not Found",
-            error_taunt: "Oops, seems Marisa stole something important."
-        })
+            error_taunt: "Oops, seems Marisa stole something important.",
+            link: ['blog', 'about', ''].map(s => '/'+s).find(v => location.pathname.startsWith(v))
+        });
     </script>
 
 
