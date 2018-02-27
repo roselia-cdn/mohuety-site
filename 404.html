@@ -783,7 +783,7 @@ permalink: /404.html
     <script>
         function render(template, context, delim){// A not so naive template engine.
             const funcTemplate = expr => `with(data || {}) {return (${expr});}`;
-            return template.replace(new RegExp((delim || ["[[", "]]"]).join("\\s*?(.*?)\\s*?"), "gm"), (_, expr) => (new Function("data", funcTemplate(expr)))(context));
+            return template.replace(new RegExp((delim || ["\\[\\[", "\\]\\]"]).join("\\s*?(.*?)\\s*?"), "gm"), (_, expr) => (new Function("data", funcTemplate(expr)))(context));
         }
         function renderHTML(selector, context, delim){
             [].forEach.call(document.querySelectorAll(selector), function(e){

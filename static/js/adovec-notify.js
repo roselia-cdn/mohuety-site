@@ -26,7 +26,6 @@
             span.setAttribute('style', 'opacity: 0;');
             span.innerHTML = _.render(payload.text, payload.data);
             span.style.marginLeft = payload.marginLeft || o.global.marginLeft || "37%";
-            aTag.style.color = payload.textColor || o.global.textColor || "";
             aTag.addEventListener("mouseenter", e => {
                 span.style.opacity = 100;
                 e.target.style.height = (o.global.hoverHeight || payload.hoverHeight)+"px";
@@ -49,7 +48,8 @@
                 width: 100vw;\
                 height: {{defaultHeight}}px;\
                 z-index: 99999;\
-            ', Object.assign({color: payload.color, defaultHeight: o.global.defaultHeight}, payload.data))
+            ', Object.assign({color: payload.color, defaultHeight: o.global.defaultHeight}, payload.data));
+            aTag.style.color = payload.textColor || o.global.textColor || "";
 
             aTag.appendChild(span);
             divTag.appendChild(aTag);
@@ -61,7 +61,7 @@
         let opts = o.events;
         //Rendering Elements of needsRender
         opts.forEach(e => {
-            Object.assign(e.data, o.global.data);
+            Object.assign(e.data||{}, o.global.data);
             (e.needsRender || []).forEach(structure => {
                 let target = e, prevTarget = e;//structure.split(".").reduce((a,b) => a[b], e);
                 let varMap = structure.split('.');
