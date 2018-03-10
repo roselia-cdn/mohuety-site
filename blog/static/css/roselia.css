@@ -25,6 +25,9 @@
 code{
     font-family: Consolas, "Courier New", monospace;
 }
+body{
+    font-family: Seravek, 'JAF Bernino Sans', 'Myriad Pro', Myriad, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 .table-of-contents a.active{
     border-left: 2px solid #0288d1;
 }

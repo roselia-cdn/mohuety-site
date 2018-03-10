@@ -112,9 +112,9 @@
                 <li v-bind:class="next===-1?'disabled':''"><a v-bind:href="next===-1?'#!':`./?page=${next}`"><i class="material-icons">chevron_right</i></a></li>
             </ul>-->
             <div v-if="app.pages" id="load-new" class="center">
-                <a id="next-btn" v-if="app.prevPage!==-1" v-bind:href="`./?page=${app.prevPage}`" onclick="app.shiftPage(-1);return false" class="btn waves-light waves-effect blog-color left"><i class="material-icons">chevron_left</i></a>
-                <span>Page: {{ app.current }} of {{ app.pages }}</span>
-                <a id="prev-btn" v-if="app.nextPage!==-1" v-bind:href="`./?page=${app.nextPage}`" onclick="app.shiftPage(1);return false" class="btn waves-light waves-effect blog-color right"><i class="material-icons">chevron_right</i></a>
+                <a id="next-btn" v-if="app.prevPage!==-1" v-bind:href="`./?page=${app.prevPage}`" onclick="app.shiftPage(-1);return false" class="btn-floating waves-light waves-effect blog-color left"><i class="material-icons">chevron_left</i></a>
+                <span>{{ app.current }} / {{ app.pages }}</span>
+                <a id="prev-btn" v-if="app.nextPage!==-1" v-bind:href="`./?page=${app.nextPage}`" onclick="app.shiftPage(1);return false" class="btn-floating waves-light waves-effect blog-color right"><i class="material-icons">chevron_right</i></a>
             </div>
         </div>
 </div>
