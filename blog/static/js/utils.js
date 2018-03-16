@@ -85,19 +85,22 @@ utils.processPosts = function (callback) {
     else utils.getPosts(callback);
     return false;
 };
-utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true) {
+utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true, individual=true) {
     let loginData = this.getLoginData();
     let token = loginData?loginData.token:"";
     method = method.toUpperCase();
+    if(individual){
+        payload["random_t"] = (new Date).getTime();
+    }
     let data = (withToken && method!=="GET")?Object.assign({}, payload, {token: token}):payload;
-    console.log(data);
+    if(method!=="GET") data = JSON.stringify(data);
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: method,
             url: url,
             contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify(data),
+            data: data,
             success: resolve,
             error: reject
         });

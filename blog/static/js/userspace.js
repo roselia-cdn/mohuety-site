@@ -388,8 +388,8 @@ app.makeTranslation = function (locale) {
                 newPW: '新密码',
                 confirmPW: '确认密码',
                 changePWInform: '设置{0}的密码',
-                remoteLogin: '远程登陆',
-                loginCode: '登陆代码',
+                remoteLogin: '远程登入',
+                loginCode: '登入代码',
                 remoteMeta: '位于 {ip} 的 {os} {browser}用户'
             }
         },jp: {
@@ -423,8 +423,8 @@ app.makeTranslation = function (locale) {
                 newPW: '新密码',
                 confirmPW: '确认密码',
                 changePWInform: '设置{0}的密码',
-                remoteLogin: '远程登陆',
-                loginCode: '登陆代码',
+                remoteLogin: '远程登入',
+                loginCode: '登入代码',
                 remoteMeta: '位于 {ip} 的 {os} {browser}用户'
             }
         },

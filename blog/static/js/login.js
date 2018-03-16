@@ -116,7 +116,7 @@ app.codeLogin = function () {
 app.codeLoginTriggers = function () {
     app.codeChecker = setInterval(function () {
         if(!app.loginCode) return;
-        utils.fetchJSON(utils.apiFor("login", "code", app.loginCode), "POST", "", false).then(
+        utils.fetchJSON(utils.apiFor("login", "code", app.loginCode), "POST", {}, false).then(
             data => {
                 if(!data.success){
                     return;
