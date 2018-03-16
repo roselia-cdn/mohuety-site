@@ -90,7 +90,7 @@ utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true,
     let token = loginData?loginData.token:"";
     method = method.toUpperCase();
     if(individual){
-        payload["random_t"] = (new Date).getTime();
+        payload["__timestamp"] = (new Date).getTime();
     }
     let data = (withToken && method!=="GET")?Object.assign({}, payload, {token: token}):payload;
     if(method!=="GET") data = JSON.stringify(data);
