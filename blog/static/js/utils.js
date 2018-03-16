@@ -44,6 +44,10 @@ utils.getAbsPath = function () {
     return window.location.pathname + window.location.search;
 };
 
+utils.notify = function (message, displayLength, className, completeCallback){
+    return Materialize.toast(message, displayLength, className, completeCallback);
+};
+
 utils.redirectTo = url => window.location.href = url || './';
 
 utils.getLoginData = () => window.localStorage.loginData ? JSON.parse(window.localStorage.loginData):null;
@@ -80,6 +84,24 @@ utils.processPosts = function (callback) {
     if(post) callback(JSON.parse(post));
     else utils.getPosts(callback);
     return false;
+};
+utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true) {
+    let loginData = this.getLoginData();
+    let token = loginData?loginData.token:"";
+    method = method.toUpperCase();
+    let data = (withToken && method!=="GET")?Object.assign({}, payload, {token: token}):payload;
+    console.log(data);
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: method,
+            url: url,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: resolve,
+            error: reject
+        });
+    });
 };
 (function(utils, $){
     utils.colorUtils = {

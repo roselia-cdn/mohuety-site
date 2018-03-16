@@ -79,6 +79,8 @@ function shock(obj) {
 }
 window.app = {};
 app.loading = true;
+app.remoteCode = "";
+app.userMeta = {};
 app.submitChange = function (username, oldPassword, newPassword, token, success, error) {
     $.post(utils.apiFor('user/change'),{
         username: username, oldPassword: oldPassword, newPassword: newPassword, token: token || ""
@@ -287,6 +289,36 @@ app.commitSet = function () {
     });
 };
 
+app.scanCode = function (code) {
+    app.loading = true;
+    utils.fetchJSON(utils.apiFor("login", "code", "scan", code), "POST").then(data => {
+        app.loading = false;
+        if(!data.success) {
+            utils.notify(data.msg);
+            return;
+        }
+        app.confirmCodeModal(data.msg);
+    }).catch(_ => {
+        app.loading = false;
+        shock("#remote-login");
+    });
+};
+
+app.confirmCodeModal = function (meta) {
+    app.userMeta = meta;
+    $("#modal-remote").modal().modal('open');
+};
+
+app.confirmCode = function () {
+    utils.fetchJSON(utils.apiFor("login", "code", "confirm", app.remoteCode), "POST").then(data => {
+        if(!data.success){
+            return utils.notify(data.msg);
+        }
+        $("#remote-login").fadeOut();
+        $("#modal-remote").modal('close');
+    }).catch(_ => utils.notify("Network error"));
+};
+
 app.makeTranslation = function (locale) {
     let messages = {
         en: {
@@ -319,7 +351,10 @@ app.makeTranslation = function (locale) {
                 oldPW: 'Old Password',
                 newPW: 'New Password',
                 confirmPW: 'Confirm Password',
-                changePWInform: 'Change password for {0}'
+                changePWInform: 'Change password for {0}',
+                remoteLogin: 'Remote login',
+                loginCode: 'Login Code',
+                remoteMeta: '{os} {browser} user in {ip}'
             }
         },
         zh: {
@@ -352,7 +387,10 @@ app.makeTranslation = function (locale) {
                 oldPW: '旧密码',
                 newPW: '新密码',
                 confirmPW: '确认密码',
-                changePWInform: '设置{0}的密码'
+                changePWInform: '设置{0}的密码',
+                remoteLogin: '远程登陆',
+                loginCode: '登陆代码',
+                remoteMeta: '位于 {ip} 的 {os} {browser}用户'
             }
         },jp: {
             message:{
@@ -384,7 +422,10 @@ app.makeTranslation = function (locale) {
                 oldPW: '旧密码',
                 newPW: '新密码',
                 confirmPW: '确认密码',
-                changePWInform: '设置{0}的密码'
+                changePWInform: '设置{0}的密码',
+                remoteLogin: '远程登陆',
+                loginCode: '登陆代码',
+                remoteMeta: '位于 {ip} 的 {os} {browser}用户'
             }
         },
     };
