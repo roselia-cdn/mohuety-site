@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>UserSpace</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="static/css/roselia.css" rel="stylesheet" type="text/css">
+    <link href="static/css/materialize.min.css" type="text/css" rel="stylesheet">
+    <link href="static/css/material_icons.css" type="text/css" rel="stylesheet">
 </head>
 <body id="app">
 <nav class="blog-color" id="mobile-nav">
@@ -56,13 +59,12 @@
                 <button onclick="app.getSUToken();return false;" class="modal-action waves-effect waves-light btn blog-color">{{ $t('message.OK') }}</button>
             </div>
         </div>
-        <div id="modal-remote" class="modal modal-fixed-footer">
+        <div id="modal-remote" class="modal">
             <div class="modal-content container">
                 <h4 class="blog-text offset-s3">{{ $t('message.remoteLogin') }}</h4>
                 <p>{{ $t('message.remoteMeta', app.userMeta) }}</p>
-                <p id="change-user"></p>
             </div>
-            <div class="modal-footer">
+            <div v-if="!app.loading" class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-light btn blog-color">{{ $t('message.close') }}</a>
                 <a href="#!" onclick="app.confirmCode()" class="btn modal-action waves-effect waves-light blog-color">{{ $t('message.OK') }}</a>
             </div>
@@ -180,7 +182,7 @@
                         <form class="col s12">
                             <div class="container row">
                                 <div class="input-field col s12">
-                                    <input id="login-code" type="number" v-model="app.remoteCode" class="validate" required="required">
+                                    <input @keyup.enter="app.scanCode(app.remoteCode)" id="login-code" type="number" v-model="app.remoteCode" class="validate" required="required">
                                     <label for="login-code">{{ $t('message.loginCode') }}</label>
                                 </div>
                             </div>
@@ -281,9 +283,6 @@
     </div>
 </footer>
 
-<link href="static/css/roselia.css" rel="stylesheet" type="text/css">
-<link href="static/css/materialize.min.css" type="text/css" rel="stylesheet">
-<link href="static/css/material_icons.css" type="text/css" rel="stylesheet">
 <script defer src="static/js/jquery-3.2.1.min.js"></script>
 <script defer src="static/js/materialize.min.js"></script>
 <script defer src="static/js/vue.min.js"></script>

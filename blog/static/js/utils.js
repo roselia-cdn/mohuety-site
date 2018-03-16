@@ -268,6 +268,11 @@ utils.setUpEvents = function(app, events){
     window.onbeforeunload = () => app.trigger("unload");
 };
 
+Function.prototype.runAfterDeclare = function(...args){return this(...args), this;};
+if(!Promise.prototype.finally) Promise.prototype.finally = function (f) {
+    return this.then(f, f);
+};
+
 (function ($) {
     $(document).ready(function () {
         $('.blog-title').html(BLOG_TITLE);

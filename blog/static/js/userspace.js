@@ -300,6 +300,7 @@ app.scanCode = function (code) {
         app.confirmCodeModal(data.msg);
     }).catch(_ => {
         app.loading = false;
+        utils.notify("Network error.");
         shock("#remote-login");
     });
 };
@@ -310,13 +311,19 @@ app.confirmCodeModal = function (meta) {
 };
 
 app.confirmCode = function () {
+    let bar = new AdvBar();
+    bar.createBar($("#modal-remote")[0]);
+    bar.startAnimate();
+    app.loading = true;
     utils.fetchJSON(utils.apiFor("login", "code", "confirm", app.remoteCode), "POST").then(data => {
         if(!data.success){
-            return utils.notify(data.msg);
+            utils.notify(data.msg);
+            bar.abort();
         }
+        bar.stopAnimate();
         $("#remote-login").fadeOut();
         $("#modal-remote").modal('close');
-    }).catch(_ => utils.notify("Network error"));
+    }).catch(_ => {bar.abort(); utils.notify("Network error")}).finally(_ => app.loading = false);
 };
 
 app.makeTranslation = function (locale) {
@@ -354,7 +361,7 @@ app.makeTranslation = function (locale) {
                 changePWInform: 'Change password for {0}',
                 remoteLogin: 'Remote login',
                 loginCode: 'Login Code',
-                remoteMeta: '{os} {browser} user in {ip}'
+                remoteMeta: 'Will login at {os} {browser} device on {ip}'
             }
         },
         zh: {
@@ -390,7 +397,7 @@ app.makeTranslation = function (locale) {
                 changePWInform: '设置{0}的密码',
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
-                remoteMeta: '位于 {ip} 的 {os} {browser}用户'
+                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备'
             }
         },jp: {
             message:{
@@ -425,7 +432,7 @@ app.makeTranslation = function (locale) {
                 changePWInform: '设置{0}的密码',
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
-                remoteMeta: '位于 {ip} 的 {os} {browser}用户'
+                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备'
             }
         },
     };
