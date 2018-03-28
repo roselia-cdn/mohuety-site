@@ -92,7 +92,7 @@ utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true,
     if(individual){
         payload["__timestamp"] = (new Date).getTime();
     }
-    let data = (withToken && method!=="GET")?Object.assign({}, payload, {token: token}):payload;
+    let data = withToken?Object.assign({}, payload, {token: token}):payload;
     if(method!=="GET") data = JSON.stringify(data);
     return new Promise(function (resolve, reject) {
         $.ajax({

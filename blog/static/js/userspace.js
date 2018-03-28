@@ -26,7 +26,7 @@ $(document).ready(function () {
     if(!window.localStorage.loginData){
         Materialize.toast("Please login first!", 3000, '', function () {
             utils.setRedirect(utils.getAbsPath());
-            window.location.href = './login.html';
+            window.location.href = './login';
         });
     }
     if(window.sessionStorage.suToken) window.sessionStorage.removeItem('suToken');
@@ -55,7 +55,8 @@ $(document).ready(function () {
             app.getSUToken();
         }
     });
-    $(".username").html(utils.getLoginData().username);
+    utils.setLoginUI();
+    $("select").material_select();
 
 });
 
@@ -81,8 +82,9 @@ window.app = {};
 app.loading = true;
 app.remoteCode = "";
 app.userMeta = {};
+app.userData = utils.getLoginData();
 app.submitChange = function (username, oldPassword, newPassword, token, success, error) {
-    $.post(utils.apiFor('user/change'),{
+    $.post(utils.apiFor('user', 'change'), {
         username: username, oldPassword: oldPassword, newPassword: newPassword, token: token || ""
     } , function (data, stat) {
         if(!(data.success)){
@@ -126,7 +128,7 @@ app.loadUser = function () {
     bar.startAnimate();
     $.ajax({
         type: "GET",
-        url: utils.apiFor("user/list"),
+        url: utils.apiFor("user", "list"),
         contentType: "application/json",
         dataType: "json",
         data: {token: userData.token},
@@ -135,7 +137,7 @@ app.loadUser = function () {
                 Materialize.toast('Load failed.', 2000);
                 bar.abort();
                 utils.setRedirect(utils.getAbsPath());
-                window.location.href = './login.html';
+                window.location.href = './login';
             }else{
                 app.mainVue.users = raw_data.data;
                 bar.stopAnimate();
@@ -197,7 +199,7 @@ app.commitDelete = function () {
     bar.startAnimate();
     $.ajax({
         type: "DELETE",
-        url: utils.apiFor('user', 'remove'),
+        url: utils.apiFor("user", "remove"),
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({username: username, token:window.sessionStorage.suToken || ''}),
@@ -231,16 +233,13 @@ app.commitDelete = function () {
 app.addUser = function () {
     let username = $("#username").val();
     let password = $("#password").val();
+    let role = $("#user-role").val();
     let bar = new AdvBar();
     bar.createBar($("#modal-add")[0]);
     bar.startAnimate();
-    $.ajax({
-        type: "POST",
-        url: utils.apiFor('user', 'add'),
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({username: username, password: password, token:window.sessionStorage.suToken || ''}),
-        success: function (data) {
+    utils.fetchJSON(utils.apiFor("user", "add"), "POST",
+        {username: username, password: password, role:role, token: window.sessionStorage.suToken || ''},
+        false).then(function (data) {
             console.log(data);
             //data = JSON.parse(data);
             if(data.success){
@@ -260,13 +259,11 @@ app.addUser = function () {
                     Materialize.toast(data.msg,2000);
                 }
             }
-        },
-        error:function () {
+        }).catch(function () {
             shock("#modal-add");
             bar.abort();
             Materialize.toast("Network Error!", 2000);
-        }
-    })
+        });
 };
 
 app.openSet = function (username) {
@@ -295,13 +292,14 @@ app.scanCode = function (code) {
         app.loading = false;
         if(!data.success) {
             utils.notify(data.msg);
+            shock("#remote-login-form");
             return;
         }
         app.confirmCodeModal(data.msg);
     }).catch(_ => {
         app.loading = false;
         utils.notify("Network error.");
-        shock("#remote-login");
+        shock("#remote-login-form");
     });
 };
 
@@ -311,16 +309,11 @@ app.confirmCodeModal = function (meta) {
 };
 
 app.confirmCode = function () {
-    let bar = new AdvBar();
-    bar.createBar($("#modal-remote")[0]);
-    bar.startAnimate();
     app.loading = true;
     utils.fetchJSON(utils.apiFor("login", "code", "confirm", app.remoteCode), "POST").then(data => {
         if(!data.success){
             utils.notify(data.msg);
-            bar.abort();
         }
-        bar.stopAnimate();
         $("#remote-login").fadeOut();
         $("#modal-remote").modal('close');
     }).catch(_ => {bar.abort(); utils.notify("Network error")}).finally(_ => app.loading = false);
@@ -361,7 +354,8 @@ app.makeTranslation = function (locale) {
                 changePWInform: 'Change password for {0}',
                 remoteLogin: 'Remote login',
                 loginCode: 'Login Code',
-                remoteMeta: 'Will login at {os} {browser} device on {ip}'
+                remoteMeta: 'Will login at {os} {browser} device on {ip}',
+                userRole: 'User Level'
             }
         },
         zh: {
@@ -397,7 +391,8 @@ app.makeTranslation = function (locale) {
                 changePWInform: '设置{0}的密码',
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
-                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备'
+                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备',
+                userRole: "用户权限等级"
             }
         },jp: {
             message:{
@@ -432,7 +427,8 @@ app.makeTranslation = function (locale) {
                 changePWInform: '设置{0}的密码',
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
-                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备'
+                remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备',
+                userRole: "用户权限"
             }
         },
     };

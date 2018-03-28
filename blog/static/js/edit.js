@@ -24,9 +24,6 @@ $(document).ready(function () {
             app.makeRedirect('login');
         }, 2000);
     }
-    addEventListener("storage", e => {
-        e.key === "loginData" && (e.newValue || app.makeRedirect("login"));
-    });
     if(!userData.role){
         $("#content").fadeOut();
         Materialize.toast("You are not supposed to do this.", 2000);
@@ -34,6 +31,9 @@ $(document).ready(function () {
             window.location.href = './';
         }, 2000);
     }
+    addEventListener("storage", e => {
+        e.key === "loginData" && (e.newValue || app.makeRedirect("login"));
+    });
     $(".username").html(userData.username);
     $(".chips").material_chip();
 
@@ -85,17 +85,19 @@ app.preload = function () {
 };
 
 app.loadContent = function (post_num, callback) {
-    $.getJSON(utils.apiFor('post/')+post_num,{token: utils.getLoginData().token}, function (data) {
+    let bar = new AdvBar;
+    bar.startAnimate();
+    utils.fetchJSON(utils.apiFor("post", post_num), "GET", {markdown: true}).then(function (data) {
         if(data === 'null') data = null;
         app.postData = data;
         callback(data);
-    });
+    }).then(bar.stopAnimate.bind(bar), bar.abort.bind(bar));
 };
 
 app.showContent = function (data) {
 
     if(!data){
-        window.location.href = './edit.html';
+        window.location.href = './edit';
         return;
     }
     document.title = "Edit post " + data.title;
@@ -187,7 +189,7 @@ app.doRequest = function () {
                     app.saveDraft();
                     Materialize.toast('Token Expired!', 2000);
                     setTimeout(function () {
-                        app.makeRedirect('login.html');
+                        app.makeRedirect('login');
                     }, 2000);
                 }else{
                     Materialize.toast(data.msg);
@@ -221,7 +223,7 @@ app.deletePost = function (pid) {
             }else{
                 if(data.msg === 'expired'){
                     Materialize.toast('Token Expired!', 2000, "", function () {
-                        app.makeRedirect('login.html', window.location.href);
+                        app.makeRedirect('login', window.location.href);
                     });
                 }else{
                     Materialize.toast(data.msg);
