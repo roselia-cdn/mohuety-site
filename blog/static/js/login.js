@@ -77,7 +77,6 @@ app.login = function () {
         app.loading = false;
         return false;
     }
-    console.log($("#login-data").serialize());
     $.post(utils.apiFor('login'),{
         username: username, password: password
     } , function (data, stat) {

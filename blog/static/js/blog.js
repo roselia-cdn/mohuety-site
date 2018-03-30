@@ -62,7 +62,6 @@ app.getPosts = function (page) {
         data: get_data,
         success: function (raw_data) {
             let data = raw_data.data;
-            console.log(tag);
             if(tag){
                 if(!data.length) {
                     data = [{
@@ -123,7 +122,6 @@ app.deletePost = function (pid) {
         dataType: "json",
         data: JSON.stringify({postID: pid, token:userData.token}),
         success: function (data) {
-            console.log(data);
             //data = JSON.parse(data);
             if(data.success){
                 bar.stopAnimate();

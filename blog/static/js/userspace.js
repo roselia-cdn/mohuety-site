@@ -105,7 +105,6 @@ app.changePassword = function () {
         app.loading = false;
         return false;
     }
-    console.log($("#login-data").serialize());
     this.submitChange(utils.getLoginData().username, oldPassword, newPassword, '', function () {
         app.loading = !1;
         Materialize.toast("Password Changed",2000);
@@ -204,7 +203,6 @@ app.commitDelete = function () {
         dataType: "json",
         data: JSON.stringify({username: username, token:window.sessionStorage.suToken || ''}),
         success: function (data) {
-            console.log(data);
             //data = JSON.parse(data);
             if(data.success){
                 bar.stopAnimate();
@@ -240,7 +238,6 @@ app.addUser = function () {
     utils.fetchJSON(utils.apiFor("user", "add"), "POST",
         {username: username, password: password, role:role, token: window.sessionStorage.suToken || ''},
         false).then(function (data) {
-            console.log(data);
             //data = JSON.parse(data);
             if(data.success){
                 bar.stopAnimate();
