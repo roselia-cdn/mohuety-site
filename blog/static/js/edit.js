@@ -90,7 +90,7 @@ app.editRawHTML = function(btn){
     let pid = app.getPostNum();
     pid > 0 && app.loadContent(pid, app.showContent, false);
     $(btn).fadeOut();
-}
+};
 
 app.loadContent = function (post_num, callback, markdown=true) {
     let bar = new AdvBar;
