@@ -85,25 +85,51 @@ utils.processPosts = function (callback) {
     else utils.getPosts(callback);
     return false;
 };
-utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true, individual=true) {
+utils.refreshToken = function (token) {
+    if (!token) {
+        let userData = utils.getLoginData();
+        token = userData && userData.rftoken;
+    }
+    if (!token) return Promise.reject("No token");
+    return utils.fetchJSON(utils.apiFor('login', 'token', 'refresh'),
+        'POST', {token}, false, false).then(function (data) {
+        if (data.success) {
+            let userData = utils.getLoginData();
+            userData && (userData.token = data.token) && utils.setLoginData(userData);
+            return userData;
+        } else {
+            utils.notify(data.msg);
+            utils.removeLoginData();
+            return Promise.reject(data.msg);
+        }
+    });
+};
+utils.ajaxPromised = function (data) {
+    return new Promise(function (resolve, reject) {
+        $.ajax(Object.assign({success: resolve, error: reject}, data));
+    });
+};
+utils.fetchJSON = function (url, method = "GET", payload = {}, withToken = true, individual = true) {
     let loginData = this.getLoginData();
-    let token = loginData?loginData.token:"";
+    let token = loginData ? loginData.token : "";
     method = method.toUpperCase();
-    if(individual){
+    if (individual) {
         payload["__timestamp"] = (new Date).getTime();
     }
-    let data = withToken?Object.assign({}, payload, {token: token}):payload;
-    if(method!=="GET") data = JSON.stringify(data);
-    return new Promise(function (resolve, reject) {
-        $.ajax({
-            type: method,
-            url: url,
-            contentType: "application/json",
-            dataType: "json",
-            data: data,
-            success: resolve,
-            error: reject
-        });
+    let data = withToken ? Object.assign({}, payload, {token: token}) : payload;
+    if (method !== "GET") data = JSON.stringify(data);
+    return this.ajaxPromised({
+        type: method,
+        url: url,
+        contentType: "application/json",
+        dataType: "json",
+        data: data
+    });
+};
+utils.fetchJSONWithSuccess = function (...args) {
+    return this.fetchJSON(...args).then(data => {
+        if(!data.success) return Promise.reject(data.msg);
+        return data.result;
     });
 };
 (function(utils, $){

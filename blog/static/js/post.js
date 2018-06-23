@@ -183,5 +183,10 @@ $(document).ready(function () {
     app.loading = true;
     app.onLoad(utils.setHeimu);
     app.loadContent();
-    window.addEventListener('popstate', e => e.state.id && app.loadContent(e.state.id))
+    window.addEventListener('popstate', e => e.state.id && app.loadContent(e.state.id));
+    window.addEventListener('keyup', ev => {
+        let code = ev.key;
+        if(code === 'ArrowLeft') app.shiftPost(1);
+        if(code === 'ArrowRight') app.shiftPost(-1);
+    });
 });

@@ -19,7 +19,7 @@ app.getInfo = function () {
 app.goLogIn = function (appName) {
     window.sessionStorage.message = `Login to ${appName || app.appName || ""} with ${utils.BLOG_TITLE}.`;
     utils.setRedirect(utils.getAbsPath());
-    utils.redirectTo("./login.html");
+    utils.redirectTo("./login");
 };
 
 app.authorize = function () {

@@ -1,15 +1,5 @@
-/**
- * Created by somai on 2017/9/16.
- */
-var resizer = function () {
-    //document.getElementsByClassName('parallax-container')[0].style.minHeight = window.innerHeight - document.getElementById('mobile-nav').style.height + "px";
-    //$('#content').css('height', (window.innerHeight - $('#mobile-nav').height()) + "px");
-    //document.getElementById("homura").width = window.innerWidth;
-};
 $(document).ready(function () {
     $(".button-collapse").sideNav();
-    resizer();
-    $(window).resize(resizer);
     addEventListener("storage", e => {
         e.key === "loginData" && (e.newValue || (utils.setRedirect(utils.getAbsPath()), utils.redirectTo("./login")));
     });
@@ -29,7 +19,8 @@ $(document).ready(function () {
             window.location.href = './login';
         });
     }
-    if(window.sessionStorage.suToken) window.sessionStorage.removeItem('suToken');
+    let isFirstRun = utils.getArguments().firstrun;
+    if(!isFirstRun && window.sessionStorage.suToken) window.sessionStorage.removeItem('suToken');
     app.mainVue = new Vue({
         el: '#content',
         data: {
@@ -57,6 +48,7 @@ $(document).ready(function () {
     });
     utils.setLoginUI();
     $("select").material_select();
+    isFirstRun && app.openManage();
 
 });
 
@@ -83,8 +75,9 @@ app.loading = true;
 app.remoteCode = "";
 app.userMeta = {};
 app.userData = utils.getLoginData();
+app.uploadedImages = [];
 app.submitChange = function (username, oldPassword, newPassword, token, success, error) {
-    $.post(utils.apiFor('user', 'change'), {
+    $.post(utils.apiFor('user', 'change'),{
         username: username, oldPassword: oldPassword, newPassword: newPassword, token: token || ""
     } , function (data, stat) {
         if(!(data.success)){
@@ -105,6 +98,7 @@ app.changePassword = function () {
         app.loading = false;
         return false;
     }
+    console.log($("#login-data").serialize());
     this.submitChange(utils.getLoginData().username, oldPassword, newPassword, '', function () {
         app.loading = !1;
         Materialize.toast("Password Changed",2000);
@@ -203,7 +197,6 @@ app.commitDelete = function () {
         dataType: "json",
         data: JSON.stringify({username: username, token:window.sessionStorage.suToken || ''}),
         success: function (data) {
-            //data = JSON.parse(data);
             if(data.success){
                 bar.stopAnimate();
                 Materialize.toast("Success!", 2000);
@@ -238,7 +231,6 @@ app.addUser = function () {
     utils.fetchJSON(utils.apiFor("user", "add"), "POST",
         {username: username, password: password, role:role, token: window.sessionStorage.suToken || ''},
         false).then(function (data) {
-            //data = JSON.parse(data);
             if(data.success){
                 bar.stopAnimate();
                 Materialize.toast("Success!", 2000);
@@ -316,6 +308,43 @@ app.confirmCode = function () {
     }).catch(_ => {bar.abort(); utils.notify("Network error")}).finally(_ => app.loading = false);
 };
 
+app.refreshToken = function () {
+    app.loading = true;
+    let bar = new AdvBar;
+    bar.startAnimate();
+    utils.refreshToken().then(data => app.userData = data, msg => {
+        utils.notify(msg);
+        utils.setRedirect();
+        utils.redirectTo('login');
+    }).then(_ => bar.stopAnimate(), _ => bar.abort()).finally(_ => app.loading = false);
+};
+
+app.getUploadedImage = function(){
+    let bar = new AdvBar;
+    bar.createBar($("#image-management-form")[0]);
+    bar.startAnimate();
+    utils.fetchJSONWithSuccess(utils.apiFor('pic', 'list')).then(pics => {
+        app.uploadedImages = pics;
+        bar.stopAnimate();
+        $("#image-management").fadeIn();
+    }).catch(bar.abort().bind(bar));
+};
+
+app.deleteUploadedImage = function (fileName) {
+    let images = this.uploadedImages.map(e => e.fileName);
+    if (!images.includes(fileName)) return;
+    let bar = new AdvBar;
+    bar.startAnimate();
+    utils.fetchJSONWithSuccess(utils.apiFor('pic', 'remove'), "POST", {fileName}).then(data => {
+        bar.stopAnimate();
+        app.uploadedImages.splice(images.indexOf(fileName), 1);
+    }).catch(msg => {
+        utils.notify(msg);
+        bar.abort();
+        msg && msg === 'File Not Found' && app.uploadedImages.splice(images.indexOf(fileName), 1);
+    });
+};
+
 app.makeTranslation = function (locale) {
     let messages = {
         en: {
@@ -352,7 +381,9 @@ app.makeTranslation = function (locale) {
                 remoteLogin: 'Remote login',
                 loginCode: 'Login Code',
                 remoteMeta: 'Will login at {os} {browser} device on {ip}',
-                userRole: 'User Level'
+                userRole: 'User Level',
+                refreshToken: 'Session Relet',
+                manageImages: "Manage Images"
             }
         },
         zh: {
@@ -389,7 +420,9 @@ app.makeTranslation = function (locale) {
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
                 remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备',
-                userRole: "用户权限等级"
+                userRole: "用户权限等级",
+                refreshToken: '会话续租',
+                manageImages: "上传图片管理"
             }
         },jp: {
             message:{
@@ -425,7 +458,9 @@ app.makeTranslation = function (locale) {
                 remoteLogin: '远程登入',
                 loginCode: '登入代码',
                 remoteMeta: '将登入位于 {ip} 的 {os} {browser}设备',
-                userRole: "用户权限"
+                userRole: "用户权限",
+                refreshToken: '会话续租',
+                manageImages: "上传图片管理"
             }
         },
     };
