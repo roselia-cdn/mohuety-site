@@ -325,6 +325,7 @@ app.getUploadedImage = function(){
     bar.startAnimate();
     utils.fetchJSONWithSuccess(utils.apiFor('pic', 'list')).then(pics => {
         app.uploadedImages = pics;
+        app.uploadedImages.forEach(x => x.url = `https://roselia.moe${x.url}`)
         bar.stopAnimate();
         $("#image-management").fadeIn();
     }).catch(bar.abort().bind(bar));

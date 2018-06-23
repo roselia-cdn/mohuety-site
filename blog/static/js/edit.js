@@ -306,7 +306,7 @@ app.doUploadImage = function (uploadImage) {
             return Promise.reject(data.msg);
         }
         bar.stopAnimate();
-        app.uploadedImages.push(data.picURL);
+        app.uploadedImages.push('https://roselia.moe' + data.picURL);
         $("#upload-img").val("");
         $("#upload-img-file-name").val("Drag & Drop");
     }).catch(reason => {
