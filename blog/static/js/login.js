@@ -77,6 +77,21 @@ app.login = function () {
         app.loading = false;
         return false;
     }
+    utils.fetchJSON(utils.apiFor('login'), 'POST', {username, password}).then(data => {
+        if(!(data.success)){
+            shock('#login-form');
+            Materialize.toast(data.msg, 2000);
+            app.loading = false;
+            return;
+        }
+        utils.setLoginData({
+            username: username, token: data.token, role: data.role, rftoken: data.rftoken
+        });
+        let redirectURL = utils.getRedirect();
+        utils.redirectTo(redirectURL);
+        app.cleanUp();
+    });
+    /*
     $.post(utils.apiFor('login'),{
         username: username, password: password
     } , function (data, stat) {
@@ -93,7 +108,7 @@ app.login = function () {
         let redirectURL = utils.getRedirect();
         utils.redirectTo(redirectURL);
         app.cleanUp();
-    });
+    });*/
 
 };
 app.cleanUp = function () {

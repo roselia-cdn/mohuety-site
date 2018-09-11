@@ -113,7 +113,7 @@
                 $(".parallax").parallax(),
                 resizer(),
                 $(window).resize(resizer);
-                AdovecNotify.of({
+                window.birthdayWidget = AdovecNotify.of({
                     events:AdovecNotify.helper({
                             date: "{{date}}",
                             color: "{{color}}",
@@ -121,11 +121,11 @@
                             text: "Happy birthdy, {{ enName }}! - {{ role }}{{ jpName }}",
                             needsRender: ["date", "color", "text"]
                         }, [
-                            {date: "3-20", enName:"Sayo", role: "Roselia.Gt.", jpName: "氷川 紗夜", color: "#81d8d4"}, 
-                            {date: "7-3", enName:"Ako", role: "Roselia.Dr.", jpName: "宇田川 あこ", color: "#fb81ca"}, 
-                            {date: "10-26", enName:"Yukina", role: "Roselia.Vo.", jpName: "湊 友希那", color: "#c67cb5"}, 
-                            {date: "10-17", enName:"Rinko", role: "Roselia.Key.", jpName: "白金 燐子", color: "#cbc5ce"}, 
-                            {date: "8-25", enName:"Lisa", role: "Roselia.Ba.", jpName: "今井 リサ", color: "#fc926c"}, 
+                            {date: "3-20", enName:"Sayo", role: "Roselia.Gt.", jpName: "氷川 紗夜", color: "#00aabc"}, 
+                            {date: "7-3", enName:"Ako", role: "Roselia.Dr.", jpName: "宇田川 あこ", color: "#dd0087"}, 
+                            {date: "10-26", enName:"Yukina", role: "Roselia.Vo.", jpName: "湊 友希那", color: "#890f87"}, 
+                            {date: "10-17", enName:"Rinko", role: "Roselia.Key.", jpName: "白金 燐子", color: "#bbbbbb"}, 
+                            {date: "8-25", enName:"Lisa", role: "Roselia.Ba.", jpName: "今井 リサ", color: "#dd2200"}, 
                             {date: "8-1", enName:"Chika", role: "Aqours.", jpName: "高海千歌", color: "#f08300"}, 
                             {date: "9-19", enName:"Riko", role: "Aqours.", jpName: "桜内梨子", color: "#ff9999"}, 
                             {date: "4-17", enName:"You", role: "Aqours.", jpName: "渡辺曜", color: "#44aaff"}, 

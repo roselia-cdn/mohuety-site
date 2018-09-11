@@ -13,6 +13,11 @@
         };
         let dat = new Date;
         let _ = ADVB.utils;
+        this.setCurrentDate = function(date) {
+            dat = new Date(date);
+            this.destroy();
+            this.init();
+        }
         this.createElement = function(payload, before){
             //Create <div> tag
             var divTag = document.createElement('div');
@@ -54,28 +59,40 @@
             aTag.appendChild(span);
             divTag.appendChild(aTag);
             document.body.insertBefore(divTag, before || document.body.firstChild);
+            return () => {
+                document.body.removeChild(divTag);
+            };
         }
-        o.global = o.global || {};
-        _.deepExtend(o.global, defaults.global);
-        //console.log(o);
-        let opts = o.events;
-        //Rendering Elements of needsRender
-        opts.forEach(e => {
-            Object.assign(e.data||{}, o.global.data);
-            (e.needsRender || []).forEach(structure => {
-                let target = e, prevTarget = e;//structure.split(".").reduce((a,b) => a[b], e);
-                let varMap = structure.split('.');
-                varMap.forEach(s => {
-                    prevTarget = target;
-                    target = target[s];
-                });
-                prevTarget[varMap[varMap.length - 1]] = _.render(target, e.data);
-            })
-        });
-        //console.log(opts);
-        let targets = opts.filter(d => _.sameDate(d.date, dat, d.match || o.global.match));
-        this.targets = targets.length ? targets : opts.filter(d => d.date === "else");
-        this.targets.forEach(e => this.createElement(e, o.global.element));
+        this.init = function() {
+            o.global = o.global || {};
+            _.deepExtend(o.global, defaults.global);
+            //console.log(o);
+            let opts = o.events;
+            //Rendering Elements of needsRender
+            opts.forEach(e => {
+                Object.assign(e.data||{}, o.global.data);
+                (e.needsRender || []).forEach(structure => {
+                    let target = e, prevTarget = e;//structure.split(".").reduce((a,b) => a[b], e);
+                    let varMap = structure.split('.');
+                    varMap.forEach(s => {
+                        prevTarget = target;
+                        target = target[s];
+                    });
+                    prevTarget[varMap[varMap.length - 1]] = _.render(target, e.data);
+                })
+            });
+            //console.log(opts);
+            let targets = opts.filter(d => _.sameDate(d.date, dat, d.match || o.global.match));
+            this.targets = targets.length ? targets : opts.filter(d => d.date === "else");
+            this.removeChildren = this.targets.map(e => this.createElement(e, o.global.element));
+        };
+
+        this.destroy = function() {
+            this.removeChildren.forEach(f => f());
+            this.removeChildren = [];
+        }
+        this.init();
+        
     }
     //Inspired by haskell
     let on = (f1, f2) => (a, b) => f2(f1(a), f1(b));
