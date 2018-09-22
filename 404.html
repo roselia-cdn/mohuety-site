@@ -1,26 +1,56 @@
-{% if page.url contains '/blog' %}
-{% assign in_spa_context = true %}
-{% else %}
-{% assign in_spa_context = false %}
-{% endif %}
+---
+permalink: /404.html
+---
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-    {% if in_spa_context %}
-        <title>SPA Hack</title>
-    {% else %}
-        <title>404 Not Found</title>
-    {% endif %}
+  <style>
+        #index-loading {
+            position: absolute;
+            width: 300px;
+            height: 100px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+        #index-loading p {
+            font-size: 30px !important;
+            margin: 0 !important;
+            line-height: 0 !important;
+        }
+        .message {
+            text-align: center;
+            padding: 20px 0;
+            color: #999;
+        }
+        .message p {
+            font-size: 15px;
+        }
+        </style>
+  <title>SPA Hack</title>
+
+  <script>
+    if(window.location.pathname.indexOf('/blog') !== -1) {
+        sessionStorage.redirect = location.href;
+        window.location.replace('/blog/')
+    } else {
+        fetch('/current404.html').then(data => data.text()).then(data => document.write(data))
+    }
+  </script>
+
+  <!-- <meta http-equiv="refresh" content="0;URL='/'"></meta> -->
 </head>
 
 <body>
-    {% if in_spa_context %}
-    <meta http-equiv="refresh" content="0;URL='/blog/'"></meta> 
-    {% else %}
-    {% include_relative /current404.html %}
-    {% endif %}
+    <div id=app>
+        <div id="index-loading" class="message">
+            <p><span class="progress"></span> (=_=)<span class="wait"></span></p>
+        </div>
+    </div>
 </body>
 
 
