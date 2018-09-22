@@ -1,9 +1,9 @@
-.main-color {
+.main-color,.blog-color {
     background-color: #0288d1 !important;
     /*#7c4dff */
 }
 
-.main-text {
+.main-text,.blog-text {
     color: #0097a7 !important;
     /* #651fff*/
 }

@@ -31,14 +31,19 @@ permalink: /404.html
             font-size: 15px;
         }
         </style>
-  <title>SPA Hack</title>
+  <title>404 Not Foundk</title>
 
   <script>
+    function removeChild(id){
+        window.onload = () => (function(x){x.parentNode.removeChild(x);})(document.getElementById(id))
+    }
     if(window.location.pathname.indexOf('/blog') !== -1) {
         sessionStorage.redirect = location.href;
         window.location.replace('/blog/')
+        removeChild('not-found')
+        document.title = 'SPA Hack'
     } else {
-        fetch('/current404.html').then(data => data.text()).then(data => document.write(data))
+        removeChild('app')
     }
   </script>
 
@@ -50,6 +55,9 @@ permalink: /404.html
         <div id="index-loading" class="message">
             <p><span class="progress"></span> (=_=)<span class="wait"></span></p>
         </div>
+    </div>
+    <div id=not-found>
+        {% include_relative /current404.html %}
     </div>
 </body>
 
