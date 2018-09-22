@@ -1,6 +1,3 @@
----
-permalink: /404.html
----
 {% if page.url contains '/blog' %}
 {% assign in_spa_context = true %}
 {% else %}
@@ -22,7 +19,7 @@ permalink: /404.html
     {% if in_spa_context %}
     <meta http-equiv="refresh" content="0;URL='/blog/'"></meta> 
     {% else %}
-    {% include_relative current404.html %}
+    {% include_relative /current404.html %}
     {% endif %}
 </body>
 
