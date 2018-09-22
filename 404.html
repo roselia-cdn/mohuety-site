@@ -1,51 +1,17 @@
 ---
 permalink: /404.html
 ---
+{% assign in_spa_context = page.url contains '/blog' %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <style>
-        #index-loading {
-            position: absolute;
-            width: 300px;
-            height: 100px;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-        }
-        #index-loading p {
-            font-size: 30px !important;
-            margin: 0 !important;
-            line-height: 0 !important;
-        }
-        .message {
-            text-align: center;
-            padding: 20px 0;
-            color: #999;
-        }
-        .message p {
-            font-size: 15px;
-        }
-        </style>
-  <title>SPA Hack</title>
-
-  <script>
-    if(window.location.pathname.indexOf('/blog') !== -1) {
-        sessionStorage.redirect = location.href;
-        let metaTag = document.createElement('meta')
-        metaTag.setAttribute('http-equiv', 'refresh')
-        metaTag.setAttribute('content', '0;URL="/blog/"')
-        document.head.appendChild(metaTag)
-    } else {
-        fetch('/current404.html').then(data => data.text()).then(data => document.write(data))
-    }
-  </script>
-
-  <!-- <meta http-equiv="refresh" content="0;URL='/'"></meta> -->
+    {% if in_spa_context %}
+        <title>SPA Hack</title>
+    {% else %}
+        <title>404 Not Found</title>
+    {% endif %}
 </head>
 
 <body>
@@ -54,6 +20,11 @@ permalink: /404.html
             <p><span class="progress"></span> (=_=)<span class="wait"></span></p>
         </div>
     </div>
+    {% if in_spa_context %}
+    <meta http-equiv="refresh" content="0;URL='/'"></meta> 
+    {% else %}
+    {% include current404.html %}
+    {% endif %}
 </body>
 
 
