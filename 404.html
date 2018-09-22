@@ -1,7 +1,11 @@
 ---
 permalink: /404.html
 ---
-{% assign in_spa_context = page.url contains '/blog' %}
+{% if page.url contains '/blog' %}
+{% assign in_spa_context = true %}
+{% else %}
+{% assign in_spa_context = false %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,15 +19,10 @@ permalink: /404.html
 </head>
 
 <body>
-    <div id=app>
-        <div id="index-loading" class="message">
-            <p><span class="progress"></span> (=_=)<span class="wait"></span></p>
-        </div>
-    </div>
     {% if in_spa_context %}
-    <meta http-equiv="refresh" content="0;URL='/'"></meta> 
+    <meta http-equiv="refresh" content="0;URL='/blog/'"></meta> 
     {% else %}
-    {% include current404.html %}
+    {% include_relative current404.html %}
     {% endif %}
 </body>
 
