@@ -7,7 +7,6 @@ window.utils = {};
 utils.BLOG_TITLE = BLOG_TITLE;
 utils.BLOG_MOTTO = BLOG_MOTTO;
 utils.apiBase = "https://roselia.moe/blog/api";
-window.onerror = ()=>true;
 utils.getArguments = function () {
     let argStr = window.location.search;
     if(!argStr.length) return {};
