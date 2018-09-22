@@ -1,1 +1,71 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" href=/favicon.ico><title>Mohuety</title><link href=/static/css/app.e1c0120969c822819bb63ae40ebda7af.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.67c28999be1b327ceb9b.js></script><script type=text/javascript src=/static/js/app.5025edf98c00b7d3a48b.js></script><script async src="static/js/common.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href=/favicon.ico>
+    <title>Mohuety</title>
+    <link href=/static/css/app.e1c0120969c822819bb63ae40ebda7af.css rel=stylesheet>
+    <style>
+    #index-loading {
+        position: absolute;
+        width: 300px;
+        height: 100px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+    }
+    #index-loading p {
+        font-size: 30px !important;
+        margin: 0 !important;
+        line-height: 0 !important;
+    }
+    .message {
+        text-align: center;
+        padding: 20px 0;
+        color: #999;
+    }
+    .message p {
+        font-size: 15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id=app>
+        <div id="index-loading" class="message">
+            <p><span class="progress"></span> (=_=)<span class="wait"></span></p>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var t = setInterval(function() {
+            var el = document.getElementById('index-loading');
+            if (el != null) {
+                var wait = el.getElementsByClassName('wait')[0];
+                if (wait.innerHTML.length > 3) {
+                wait.innerHTML = '';
+                } else {
+                wait.innerHTML += '.';
+                }
+            } else {
+                clearInterval(t);
+            }
+        }, 400);
+        let redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+            history.replaceState(null, null, redirect);
+        }
+  })();
+    </script>
+    <script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script>
+    <script type=text/javascript src=/static/js/vendor.67c28999be1b327ceb9b.js></script>
+    <script type=text/javascript src=/static/js/app.5025edf98c00b7d3a48b.js></script>
+    <script async src="/static/js/common.js"></script>
+</body>
+
+</html>
