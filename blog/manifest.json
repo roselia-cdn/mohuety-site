@@ -1,0 +1,15 @@
+{
+  "name": "Mohuety",
+  "short_name": "Mohuety",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0288d1"
+}
