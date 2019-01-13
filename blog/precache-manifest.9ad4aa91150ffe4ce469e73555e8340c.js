@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-solid-900.52b8345b.woff"
   },
   {
-    "revision": "464e62a3fdc84001bb37",
-    "url": "/static/css/app.fb720e22.css"
+    "revision": "8f9f5d14af4422d2f8e0",
+    "url": "/static/css/app.f662f998.css"
   },
   {
-    "revision": "fc66719252588bfd050a",
-    "url": "/static/css/chunk-vendors.14620a6a.css"
+    "revision": "52b1aa2e5f009096df01",
+    "url": "/static/css/chunk-vendors.b4fc12c0.css"
   },
   {
-    "revision": "fc66719252588bfd050a",
-    "url": "/static/js/chunk-vendors.e86403e1.js"
+    "revision": "52b1aa2e5f009096df01",
+    "url": "/static/js/chunk-vendors.f8e5fa46.js"
   },
   {
     "revision": "e65d96d04378217b8b5caff2fb1b62cb",
@@ -36,16 +36,16 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-brands-400.b89c6c51.woff2"
   },
   {
-    "revision": "dd4ff1196905f0585aef2c80486869e9",
-    "url": "/static/fonts/fa-brands-400.dd4ff119.woff"
-  },
-  {
     "revision": "8086e197694282b26c7b729945ecc377",
     "url": "/static/fonts/fa-solid-900.8086e197.woff2"
   },
   {
-    "revision": "464e62a3fdc84001bb37",
-    "url": "/static/js/app.4aeee322.js"
+    "revision": "dd4ff1196905f0585aef2c80486869e9",
+    "url": "/static/fonts/fa-brands-400.dd4ff119.woff"
+  },
+  {
+    "revision": "8f9f5d14af4422d2f8e0",
+    "url": "/static/js/app.d49c3c43.js"
   },
   {
     "revision": "50a544b5ad4d512e8db3cdc089823a00",
@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "/static/img/fa-regular-400.734248d0.svg"
   },
   {
-    "revision": "1709a2810c3752483683f3f7d287aa89",
-    "url": "/static/fonts/fa-solid-900.1709a281.ttf"
-  },
-  {
     "revision": "f72d546abcc27880adf8428792c72519",
     "url": "/static/fonts/fa-solid-900.f72d546a.eot"
+  },
+  {
+    "revision": "1709a2810c3752483683f3f7d287aa89",
+    "url": "/static/fonts/fa-solid-900.1709a281.ttf"
   },
   {
     "revision": "fef43c1fd872ef7f1880483d9b63ccf2",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.27603739.svg"
   },
   {
-    "revision": "db142e8635c71136ef336e6d1a6fe633",
+    "revision": "22a46cc3d3c49689b1aa805e3f407dd4",
     "url": "/index.html"
   },
   {
