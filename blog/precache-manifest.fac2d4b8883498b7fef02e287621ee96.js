@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-solid-900.52b8345b.woff"
   },
   {
-    "revision": "8f9f5d14af4422d2f8e0",
+    "revision": "570aa447d78576a3daf9",
     "url": "/static/css/app.f662f998.css"
   },
   {
-    "revision": "52b1aa2e5f009096df01",
-    "url": "/static/css/chunk-vendors.b4fc12c0.css"
+    "revision": "34acd682013c8fc26ec9",
+    "url": "/static/css/chunk-vendors.9579c4cc.css"
   },
   {
-    "revision": "52b1aa2e5f009096df01",
-    "url": "/static/js/chunk-vendors.f8e5fa46.js"
+    "revision": "34acd682013c8fc26ec9",
+    "url": "/static/js/chunk-vendors.3df49904.js"
   },
   {
     "revision": "e65d96d04378217b8b5caff2fb1b62cb",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-regular-400.fc5252e5.woff"
   },
   {
-    "revision": "8e9f0ee6d016526776c27f91fea55cca",
-    "url": "/static/fonts/fa-regular-400.8e9f0ee6.eot"
-  },
-  {
     "revision": "deb8619e67992d3fa088b5dcbb8cff36",
     "url": "/static/fonts/fa-regular-400.deb8619e.ttf"
+  },
+  {
+    "revision": "8e9f0ee6d016526776c27f91fea55cca",
+    "url": "/static/fonts/fa-regular-400.8e9f0ee6.eot"
   },
   {
     "revision": "b89c6c51aa2999159a6667f97a46a346",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-brands-400.dd4ff119.woff"
   },
   {
-    "revision": "8f9f5d14af4422d2f8e0",
-    "url": "/static/js/app.d49c3c43.js"
+    "revision": "570aa447d78576a3daf9",
+    "url": "/static/js/app.66b6bd21.js"
   },
   {
     "revision": "50a544b5ad4d512e8db3cdc089823a00",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.27603739.svg"
   },
   {
-    "revision": "22a46cc3d3c49689b1aa805e3f407dd4",
+    "revision": "c00006f356a80b7ae55f36eab78d5b3a",
     "url": "/index.html"
   },
   {
