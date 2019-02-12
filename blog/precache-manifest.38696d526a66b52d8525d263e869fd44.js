@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "52b8345b6d8e11988d8db917c366b4da",
-    "url": "/static/fonts/fa-solid-900.52b8345b.woff"
+    "revision": "a756a049659c9f486a56",
+    "url": "/static/css/app.3d179e98.css"
   },
   {
-    "revision": "570aa447d78576a3daf9",
-    "url": "/static/css/app.f662f998.css"
+    "revision": "a756a049659c9f486a56",
+    "url": "/static/js/app.865167fd.js"
   },
   {
-    "revision": "34acd682013c8fc26ec9",
-    "url": "/static/css/chunk-vendors.9579c4cc.css"
+    "revision": "9b1ef912a8713a654ad9",
+    "url": "/static/css/chunk-vendors.3a7dad63.css"
   },
   {
-    "revision": "34acd682013c8fc26ec9",
-    "url": "/static/js/chunk-vendors.3df49904.js"
+    "revision": "9b1ef912a8713a654ad9",
+    "url": "/static/js/chunk-vendors.47607106.js"
   },
   {
     "revision": "e65d96d04378217b8b5caff2fb1b62cb",
@@ -44,16 +44,16 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-brands-400.dd4ff119.woff"
   },
   {
-    "revision": "570aa447d78576a3daf9",
-    "url": "/static/js/app.66b6bd21.js"
-  },
-  {
-    "revision": "50a544b5ad4d512e8db3cdc089823a00",
-    "url": "/static/fonts/fa-brands-400.50a544b5.ttf"
+    "revision": "52b8345b6d8e11988d8db917c366b4da",
+    "url": "/static/fonts/fa-solid-900.52b8345b.woff"
   },
   {
     "revision": "7d43b9ae0b8bb1d0dc425d78dc577b0a",
     "url": "/static/fonts/fa-brands-400.7d43b9ae.eot"
+  },
+  {
+    "revision": "50a544b5ad4d512e8db3cdc089823a00",
+    "url": "/static/fonts/fa-brands-400.50a544b5.ttf"
   },
   {
     "revision": "734248d027cbaac7f03c0d931ec95593",
@@ -76,15 +76,15 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.27603739.svg"
   },
   {
-    "revision": "c00006f356a80b7ae55f36eab78d5b3a",
+    "revision": "65d920e3a2cfa2555f8ea155c85dbc7a",
     "url": "/index.html"
-  },
-  {
-    "revision": "cfafa4aeb90704965e3ffe966c05248f",
-    "url": "/assets/logo.png"
   },
   {
     "revision": "3cb5c9cd3c597a21153cb16f9a7ee884",
     "url": "/assets/logo.ico"
+  },
+  {
+    "revision": "cfafa4aeb90704965e3ffe966c05248f",
+    "url": "/assets/logo.png"
   }
 ];
