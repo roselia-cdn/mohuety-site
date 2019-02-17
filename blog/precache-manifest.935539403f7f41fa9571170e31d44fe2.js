@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "1b38d0739ddaf66a01ab",
-    "url": "/static/css/app.841be02c.css"
+    "revision": "e5dc530b60254fe4c334",
+    "url": "/static/css/app.3e76db77.css"
   },
   {
-    "revision": "1b38d0739ddaf66a01ab",
-    "url": "/static/js/app.876f377b.js"
+    "revision": "e5dc530b60254fe4c334",
+    "url": "/static/js/app.23e99a6e.js"
   },
   {
-    "revision": "a3def5d2ca8473f03ca6",
+    "revision": "d4b164335648be75162e",
     "url": "/static/css/chunk-vendors.04f66a9d.css"
   },
   {
-    "revision": "a3def5d2ca8473f03ca6",
-    "url": "/static/js/chunk-vendors.e384c44e.js"
+    "revision": "d4b164335648be75162e",
+    "url": "/static/js/chunk-vendors.c597968e.js"
   },
   {
     "revision": "e65d96d04378217b8b5caff2fb1b62cb",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-regular-400.fc5252e5.woff"
   },
   {
-    "revision": "8e9f0ee6d016526776c27f91fea55cca",
-    "url": "/static/fonts/fa-regular-400.8e9f0ee6.eot"
-  },
-  {
     "revision": "deb8619e67992d3fa088b5dcbb8cff36",
     "url": "/static/fonts/fa-regular-400.deb8619e.ttf"
+  },
+  {
+    "revision": "8e9f0ee6d016526776c27f91fea55cca",
+    "url": "/static/fonts/fa-regular-400.8e9f0ee6.eot"
   },
   {
     "revision": "b89c6c51aa2999159a6667f97a46a346",
@@ -48,12 +48,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-solid-900.52b8345b.woff"
   },
   {
-    "revision": "50a544b5ad4d512e8db3cdc089823a00",
-    "url": "/static/fonts/fa-brands-400.50a544b5.ttf"
-  },
-  {
     "revision": "7d43b9ae0b8bb1d0dc425d78dc577b0a",
     "url": "/static/fonts/fa-brands-400.7d43b9ae.eot"
+  },
+  {
+    "revision": "50a544b5ad4d512e8db3cdc089823a00",
+    "url": "/static/fonts/fa-brands-400.50a544b5.ttf"
   },
   {
     "revision": "734248d027cbaac7f03c0d931ec95593",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.27603739.svg"
   },
   {
-    "revision": "e68e99708ea0d0cd80a7b6e4a39a5e36",
+    "revision": "5e79b4f99cbb102cb253c9cc4dfb433c",
     "url": "/index.html"
   },
   {
