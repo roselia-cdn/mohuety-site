@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.935539403f7f41fa9571170e31d44fe2.js"
+  "/precache-manifest.2ee9c123fb0332383243918f5cdc903a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "roselia-blog"});
