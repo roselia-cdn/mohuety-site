@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "17b93b2f874d8223cf80",
+    "revision": "df31352a29f9dcf99b49",
     "url": "/static/css/app.aa9435d7.css"
   },
   {
-    "revision": "17b93b2f874d8223cf80",
-    "url": "/static/js/app.ff920d66.js"
+    "revision": "df31352a29f9dcf99b49",
+    "url": "/static/js/app.41ab63f7.js"
   },
   {
     "revision": "53108ffad6e2ae81cf1b",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-regular-400.5dd3976c.woff"
   },
   {
-    "revision": "414ff5daad323a1c47c5177d4bd29674",
-    "url": "/static/fonts/fa-regular-400.414ff5da.eot"
-  },
-  {
     "revision": "f6c6f6c8cb7784254ad00056f6fbd74e",
     "url": "/static/fonts/fa-regular-400.f6c6f6c8.ttf"
+  },
+  {
+    "revision": "414ff5daad323a1c47c5177d4bd29674",
+    "url": "/static/fonts/fa-regular-400.414ff5da.eot"
   },
   {
     "revision": "4b115e1153a9ea339d6a0bb284cc8ed3",
@@ -48,12 +48,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-solid-900.61969d43.woff"
   },
   {
-    "revision": "c39278f7abfc798a241551194f55e29f",
-    "url": "/static/fonts/fa-brands-400.c39278f7.ttf"
-  },
-  {
     "revision": "d9d17590c975aad1be0ddab673f9c769",
     "url": "/static/fonts/fa-brands-400.d9d17590.eot"
+  },
+  {
+    "revision": "c39278f7abfc798a241551194f55e29f",
+    "url": "/static/fonts/fa-brands-400.c39278f7.ttf"
   },
   {
     "revision": "e7e957c87c454bccaa3bf9fdaa6874f8",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.82905d8d.svg"
   },
   {
-    "revision": "7e3e820bee3a4ba6710bf0dbd89b4d79",
+    "revision": "72ea5f54647fb96e6bb19840bcfbcc3d",
     "url": "/index.html"
   },
   {
