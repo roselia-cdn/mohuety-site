@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "1d3f170e784d1adebba1",
-    "url": "/static/css/app.a92ccc3e.css"
+    "revision": "59ef543df0bbe61c15da",
+    "url": "/static/css/app.2bb37a7b.css"
   },
   {
-    "revision": "1d3f170e784d1adebba1",
-    "url": "/static/js/app.78f9b7bb.js"
+    "revision": "59ef543df0bbe61c15da",
+    "url": "/static/js/app.2394695d.js"
   },
   {
-    "revision": "53108ffad6e2ae81cf1b",
+    "revision": "292b0f140bda41f3b54f",
     "url": "/static/css/chunk-vendors.b0788a87.css"
   },
   {
-    "revision": "53108ffad6e2ae81cf1b",
-    "url": "/static/js/chunk-vendors.ed82d3c7.js"
+    "revision": "292b0f140bda41f3b54f",
+    "url": "/static/js/chunk-vendors.21f4bc1f.js"
   },
   {
     "revision": "65779ebcc35604a25c2ba77309c5b8af",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-regular-400.5dd3976c.woff"
   },
   {
-    "revision": "f6c6f6c8cb7784254ad00056f6fbd74e",
-    "url": "/static/fonts/fa-regular-400.f6c6f6c8.ttf"
-  },
-  {
     "revision": "414ff5daad323a1c47c5177d4bd29674",
     "url": "/static/fonts/fa-regular-400.414ff5da.eot"
+  },
+  {
+    "revision": "f6c6f6c8cb7784254ad00056f6fbd74e",
+    "url": "/static/fonts/fa-regular-400.f6c6f6c8.ttf"
   },
   {
     "revision": "4b115e1153a9ea339d6a0bb284cc8ed3",
@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "/static/img/fa-regular-400.e7e957c8.svg"
   },
   {
-    "revision": "b70cea0339374107969eb53e5b1f603f",
-    "url": "/static/fonts/fa-solid-900.b70cea03.ttf"
-  },
-  {
     "revision": "b5596f4d339f99e3d69bc41be78db962",
     "url": "/static/fonts/fa-solid-900.b5596f4d.eot"
+  },
+  {
+    "revision": "b70cea0339374107969eb53e5b1f603f",
+    "url": "/static/fonts/fa-solid-900.b70cea03.ttf"
   },
   {
     "revision": "80533988ff5fecd5be26557d08ce8237",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.82905d8d.svg"
   },
   {
-    "revision": "bd43d07f644a24baf3a7b5c59d0c6d5c",
+    "revision": "f801dfa71954c8933e0c597695f32838",
     "url": "/index.html"
   },
   {
