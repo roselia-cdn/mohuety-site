@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "ff4370bc74683c31cce9",
-    "url": "/static/css/app.a6f7ddbe.css"
+    "revision": "001ffdc04cd2c06ff8f5",
+    "url": "/static/css/app.786673d5.css"
   },
   {
-    "revision": "ff4370bc74683c31cce9",
-    "url": "/static/js/app.60b3b109.js"
+    "revision": "001ffdc04cd2c06ff8f5",
+    "url": "/static/js/app.789c7aa4.js"
   },
   {
     "revision": "f27c5ce797cc6b99ba5a",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.82905d8d.svg"
   },
   {
-    "revision": "c088344e05528aae3175130dd3695e89",
+    "revision": "8cc823ffe0a3cf99ae3c7e2448758e34",
     "url": "/index.html"
   },
   {
