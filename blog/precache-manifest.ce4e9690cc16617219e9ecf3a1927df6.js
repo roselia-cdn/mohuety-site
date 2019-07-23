@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "303dd7cfeed6a51ef950",
-    "url": "/static/css/app.ef5c6db7.css"
+    "revision": "f0348cc41a69a1f3efa4",
+    "url": "/static/css/app.9cf0517f.css"
   },
   {
-    "revision": "303dd7cfeed6a51ef950",
-    "url": "/static/js/app.29fd4e0a.js"
+    "revision": "f0348cc41a69a1f3efa4",
+    "url": "/static/js/app.678ecb48.js"
   },
   {
-    "revision": "56b159514fef7aa6fccc",
-    "url": "/static/css/chunk-vendors.dbf26ede.css"
+    "revision": "9632163dab81ec0ae256",
+    "url": "/static/css/chunk-vendors.dfe3e4a0.css"
   },
   {
-    "revision": "56b159514fef7aa6fccc",
-    "url": "/static/js/chunk-vendors.e1a64ea9.js"
+    "revision": "9632163dab81ec0ae256",
+    "url": "/static/js/chunk-vendors.b06cd071.js"
   },
   {
     "revision": "65779ebcc35604a25c2ba77309c5b8af",
@@ -48,24 +48,24 @@ self.__precacheManifest = [
     "url": "/static/fonts/fa-solid-900.61969d43.woff"
   },
   {
-    "revision": "c39278f7abfc798a241551194f55e29f",
-    "url": "/static/fonts/fa-brands-400.c39278f7.ttf"
-  },
-  {
     "revision": "d9d17590c975aad1be0ddab673f9c769",
     "url": "/static/fonts/fa-brands-400.d9d17590.eot"
+  },
+  {
+    "revision": "c39278f7abfc798a241551194f55e29f",
+    "url": "/static/fonts/fa-brands-400.c39278f7.ttf"
   },
   {
     "revision": "e7e957c87c454bccaa3bf9fdaa6874f8",
     "url": "/static/img/fa-regular-400.e7e957c8.svg"
   },
   {
-    "revision": "b70cea0339374107969eb53e5b1f603f",
-    "url": "/static/fonts/fa-solid-900.b70cea03.ttf"
-  },
-  {
     "revision": "b5596f4d339f99e3d69bc41be78db962",
     "url": "/static/fonts/fa-solid-900.b5596f4d.eot"
+  },
+  {
+    "revision": "b70cea0339374107969eb53e5b1f603f",
+    "url": "/static/fonts/fa-solid-900.b70cea03.ttf"
   },
   {
     "revision": "80533988ff5fecd5be26557d08ce8237",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/img/fa-solid-900.82905d8d.svg"
   },
   {
-    "revision": "c25a143b20e248d47fea5e77b6867c95",
+    "revision": "6fa52e6c9072181d4906ab288112b4d0",
     "url": "/index.html"
   },
   {
