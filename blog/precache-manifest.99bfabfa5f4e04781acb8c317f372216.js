@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/logo.png"
   },
   {
-    "revision": "bd3b9ecc52700b79c2c146782c6b5191",
+    "revision": "8c9cf299e9ebb974568289120b3870bb",
     "url": "/index.html"
   },
   {
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/manifest.json"
   },
   {
-    "revision": "ec0081fa3aaa49a26554",
-    "url": "/static/css/app.69349d66.css"
+    "revision": "4e8fe1245ffba4f37aaf",
+    "url": "/static/css/app.0290dde5.css"
   },
   {
-    "revision": "45369288820a809a2be3",
-    "url": "/static/css/chunk-vendors.b35e086c.css"
+    "revision": "670e1f49284c30400a26",
+    "url": "/static/css/chunk-vendors.e813a5f0.css"
   },
   {
-    "revision": "4c82da175da0084500b5",
-    "url": "/static/css/fire-bird.dd2efc6f.css"
+    "revision": "ee17d1d6b714f1786a27",
+    "url": "/static/css/fire-bird.964c8826.css"
   },
   {
-    "revision": "7f17303993e2f8aa3921",
-    "url": "/static/css/ringing-bloom.39f8bf03.css"
+    "revision": "5eb2208efd74fe2d56a8",
+    "url": "/static/css/ringing-bloom.d266b55a.css"
   },
   {
     "revision": "088a34f78f530102fd9661173b4a4f26",
@@ -92,19 +92,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/img/fa-solid-900.7a5de9b0.svg"
   },
   {
-    "revision": "ec0081fa3aaa49a26554",
-    "url": "/static/js/app.0589ec28.js"
+    "revision": "4e8fe1245ffba4f37aaf",
+    "url": "/static/js/app.54e129b2.js"
   },
   {
-    "revision": "45369288820a809a2be3",
-    "url": "/static/js/chunk-vendors.d7fe6aa8.js"
+    "revision": "670e1f49284c30400a26",
+    "url": "/static/js/chunk-vendors.898fae13.js"
   },
   {
-    "revision": "4c82da175da0084500b5",
-    "url": "/static/js/fire-bird.654389fd.js"
+    "revision": "ee17d1d6b714f1786a27",
+    "url": "/static/js/fire-bird.e3db8777.js"
   },
   {
-    "revision": "7f17303993e2f8aa3921",
-    "url": "/static/js/ringing-bloom.3de468a9.js"
+    "revision": "5eb2208efd74fe2d56a8",
+    "url": "/static/js/ringing-bloom.20b1d865.js"
   }
 ]);
