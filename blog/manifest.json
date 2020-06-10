@@ -1,15 +1,15 @@
 {
-  "name": "Roselia Blog",
-  "short_name": "Roselia-Blog",
+  "name": "Somainer's Blog",
+  "short_name": "S-Blog",
   "icons": [
     {
-      "src": "./assets/logo.png",
+      "src": "/favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/blog/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#6670ed"
+  "background_color": "#ffffff",
+  "theme_color": "#0288d1"
 }
