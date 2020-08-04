@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/logo.png"
   },
   {
-    "revision": "7965b3078f85528e2b19",
+    "revision": "2e5dc6b8718f236d76fe",
     "url": "/blog/static/css/app.dfe8e6eb.css"
   },
   {
@@ -92,8 +92,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/blog/static/img/fa-solid-900.ec763292.svg"
   },
   {
-    "revision": "7965b3078f85528e2b19",
-    "url": "/blog/static/js/app.c16191c9.js"
+    "revision": "2e5dc6b8718f236d76fe",
+    "url": "/blog/static/js/app.30fe4409.js"
   },
   {
     "revision": "764eddc43fcbb444ab6f",
@@ -364,7 +364,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/blog/static/js/unions-road.7a65f897.js"
   },
   {
-    "revision": "41a6ed4b2b61376549f0ab97fef2072a",
+    "revision": "2c302d3c5bdbcea1de69222240e5a1f5",
     "url": "/index.html"
   },
   {
